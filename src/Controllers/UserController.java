@@ -14,21 +14,36 @@
 package Controllers;
 
 
+import Models.User;
+
+import java.util.HashMap;
+
 public class UserController {
 	public Models.User user;
-	public boolean register(Models.User user) {
-	
+	public boolean register(HashMap<String, String> userData) {
+		if (User.exists(userData.get("username"))) return false;
+
+		user = new User(userData);
+		User.addUser(user);
+		return true;
 	}
 	
-	public void login(String username, String password) {
-	
+	public boolean login(String username, String password) {
+		if (User.exists(username)) {
+			User tmp = User.getUser(username);
+			if (tmp.passwordHash.equals(password)) {
+				user = tmp;
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	public void setProfilePicture(Image image) {
-	
-	}
-	
-	public void updateProfileInfo(Profile profile) {
-	
-	}
+//	public void setProfilePicture(Image image) {
+//
+//	}
+//
+//	public void updateProfileInfo(Profile profile) {
+//
+//	}
 }

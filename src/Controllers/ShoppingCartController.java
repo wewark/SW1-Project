@@ -16,27 +16,27 @@ package Controllers;
 
 public class ShoppingCartController {
 	public Models.ShoppingCart shoppingCart;
-	public boolean creditCheckout() {
-	
-	}
-	
-	public boolean creditCheckout(Models.PromotionCard promo) {
-	
-	}
-	
-	public boolean cashCheckout() {
-	
-	}
-	
-	public boolean cashCheckout(Models.PromotionCard promo) {
-	
-	}
-	
-	public void viewCart() {
-	
-	}
-	
-	public boolean addOrder(Models.Product product, Models.Store store) {
-	
-	}
+//	public boolean creditCheckout() {
+//
+//	}
+//
+//	public boolean creditCheckout(Models.PromotionCard promo) {
+//
+//	}
+//
+//	public boolean cashCheckout() {
+//
+//	}
+//
+//	public boolean cashCheckout(Models.PromotionCard promo) {
+//
+//	}
+//
+//	public void viewCart() {
+//
+//	}
+//
+//	public boolean addOrder(Models.Product product, Models.Store store) {
+//
+//	}
 }

@@ -18,7 +18,7 @@ public class Store {
 	public String ID;
 	public String name;
 	public StoreOwner storeOwner;
-	public boolean addStore(Store store) {
-	
-	}
+//	public boolean addStore(Store store) {
+//
+//	}
 }

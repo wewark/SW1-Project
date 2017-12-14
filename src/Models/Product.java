@@ -20,17 +20,17 @@ public class Product {
 	public Brand brand;
 	public Company company;
 	public double price;
-	public DateTime date;
+//	public DateTime date;
 	public boolean accepted;
-	public boolean addProduct() {
-	
-	}
-	
-	public boolean updateProduct() {
-	
-	}
-	
-	public boolean deleteProduct() {
-	
-	}
+//	public boolean addProduct() {
+//
+//	}
+//
+//	public boolean updateProduct() {
+//
+//	}
+//
+//	public boolean deleteProduct() {
+//
+//	}
 }

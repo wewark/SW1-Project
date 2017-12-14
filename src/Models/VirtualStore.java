@@ -15,7 +15,7 @@ package Models;
 
 
 public class VirtualStore extends Store {
-	public ArrayList<VirtualStoreProduct> products;
+//	public ArrayList<VirtualStoreProduct> products;
 	public void addProduct(VirtualProduct product, double price) {
 	
 	}

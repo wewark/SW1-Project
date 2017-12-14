@@ -14,8 +14,11 @@
 package Models;
 
 
+import java.util.HashMap;
+
 public class User {
-	public String ID;
+	public static int nextID = 0;
+	public int ID;
 	public String name;
 	public String username;
 	public String birthDate;
@@ -23,16 +26,43 @@ public class User {
 	public Address address;
 	public CCInfo CCInfo;
 	public ShoppingCart shoppingCart;
-	public Image profilePicture;
-	public boolean addUser(User user) {
-	
+	//public Image profilePicture;
+
+	public User(HashMap<String, String> userData) {
+
 	}
-	
-	public boolean updateUser(User user) {
-	
+
+	public User() {
+
 	}
-	
-	public User getUser(String username, String password) {
-	
+
+	/**
+	 * @param user user to be added to DB
+	 */
+	public static void addUser(User user) {
+		user.ID = nextID++;
+		Platform.users.add(user);
+	}
+
+	/**
+	 * @param username username to check
+	 * @return true if exists
+	 */
+	public static boolean exists(String username) {
+		for (User user : Platform.users)
+			if (user.username.equals(username))
+				return true;
+		return false;
+	}
+//
+//	public boolean updateUser(User user) {
+//
+//	}
+//
+	public static User getUser(String username) {
+		for (User user : Platform.users)
+			if (user.username.equals(username))
+				return user;
+		return new User();
 	}
 }

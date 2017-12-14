@@ -14,8 +14,10 @@
 package Models;
 
 
+import java.util.ArrayList;
+
 public class Platform {
-	public ArrayList<User> users;
-	public ArrayList<Product> products;
-	public ArrayList<PromotionCard> promoCards;
+	public static ArrayList<User> users = new ArrayList<>();
+	public static ArrayList<Product> products = new ArrayList<>();
+	public static ArrayList<PromotionCard> promoCards = new ArrayList<>();
 }

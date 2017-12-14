@@ -15,9 +15,9 @@ package Models;
 
 
 public class PhysicalStore extends Store {
-	public ArrayList<PhysicalStoreProduct> products;
+//	public ArrayList<PhysicalStoreProduct> products;
 	public String address;
-	public boolean addProduct(Product product, double price) {
-	
-	}
+//	public boolean addProduct(Product product, double price) {
+//
+//	}
 }

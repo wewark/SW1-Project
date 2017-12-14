@@ -20,19 +20,19 @@ public class StoreController {
 	
 	}
 	
-	public boolean applyStore(Models.Store store) {
-	
-	}
-	
-	public boolean addStore(Models.Store store) {
-	
-	}
-	
-	public boolean addStoreProduct(Models.Product product, double price) {
-	
-	}
-	
-	public boolean deleteStoreProduct(Models.Product product) {
-	
-	}
+//	public boolean applyStore(Models.Store store) {
+//
+//	}
+//
+//	public boolean addStore(Models.Store store) {
+//
+//	}
+//
+//	public boolean addStoreProduct(Models.Product product, double price) {
+//
+//	}
+//
+//	public boolean deleteStoreProduct(Models.Product product) {
+//
+//	}
 }

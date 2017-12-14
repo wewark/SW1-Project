@@ -16,8 +16,8 @@ package Models;
 
 public class ShoppingCart {
 	public String userID;
-	public ArrayList<Order> orders;
-	public boolean addOrder(Order order) {
-	
-	}
+//	public ArrayList<Order> orders;
+//	public boolean addOrder(Order order) {
+//
+//	}
 }

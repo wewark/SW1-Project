@@ -20,23 +20,23 @@ public class ProductController {
 	
 	}
 	
-	public boolean updateProduct(Models.Product product) {
-	
-	}
-	
-	public boolean deleteProduct() {
-	
-	}
-	
-	public boolean addProduct(Models.Product product) {
-	
-	}
-	
-	public boolean applyProduct(Models.Product product) {
-	
-	}
-	
-	public ArrayList<Product> getProducts(String query) {
-	
-	}
+//	public boolean updateProduct(Models.Product product) {
+//
+//	}
+//
+//	public boolean deleteProduct() {
+//
+//	}
+//
+//	public boolean addProduct(Models.Product product) {
+//
+//	}
+//
+//	public boolean applyProduct(Models.Product product) {
+//
+//	}
+//
+//	public ArrayList<Product> getProducts(String query) {
+//
+//	}
 }

@@ -16,5 +16,5 @@ package Models;
 
 public class PhysiclaProduct extends Product {
 	public double weight;
-	public Dimension dimensions;
+//	public Dimension dimensions;
 }

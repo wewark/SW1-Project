@@ -15,15 +15,15 @@ package Models;
 
 
 public class PromotionCard {
-	public Date expirationDate;
+//	public Date expirationDate;
 	public double offPercentage;
 	public double offMax;
-	public ArrayList<SerialNumber> serialNumbers;
-	public boolean verifyPromo() {
-	
-	}
-	
-	public boolean addPromo() {
-	
-	}
+//	public ArrayList<SerialNumber> serialNumbers;
+//	public boolean verifyPromo() {
+//
+//	}
+//
+//	public boolean addPromo() {
+//
+//	}
 }

@@ -17,9 +17,9 @@ package Models;
 public class CCInfo {
 	public String ownerName;
 	public String cardNumber;
-	public Date expatriationDate;
+//	public Date expatriationDate;
 	public String securityCode;
-	public boolean verify() {
-	
-	}
+//	public boolean verify() {
+//
+//	}
 }

@@ -20,15 +20,15 @@ public class PromotionController {
 	
 	}
 	
-	public boolean addGlobalPromo(Models.GlobalPromotion promo) {
-	
-	}
-	
-	public boolean addStorPromo(Models.StorePromotion promo) {
-	
-	}
-	
-	public boolean deletePromo() {
-	
-	}
+//	public boolean addGlobalPromo(Models.GlobalPromotion promo) {
+//
+//	}
+//
+//	public boolean addStorPromo(Models.StorePromotion promo) {
+//
+//	}
+//
+//	public boolean deletePromo() {
+//
+//	}
 }
