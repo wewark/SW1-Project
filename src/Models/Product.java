@@ -15,6 +15,7 @@ package Models;
 
 
 public class Product {
+	public static int nextID = 0;
 	public String ID;
 	public String name;
 	public Brand brand;
@@ -22,9 +23,11 @@ public class Product {
 	public double price;
 //	public DateTime date;
 	public boolean accepted;
-//	public boolean addProduct() {
-//
-//	}
+	public static boolean addProduct(Product product) {
+		product.ID = String.valueOf(nextID++);		//TODO get latest ID from DB if we're saving data.
+		Platform.products.add(product);
+		return true;
+	}
 //
 //	public boolean updateProduct() {
 //
