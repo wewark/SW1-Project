@@ -64,7 +64,6 @@ public class Main {
         if(!Session.IsLoggedIn())
             return;
         ////////////////////
-
         int userChoice;
         println("Welcome, " + Session.User.name + "!.");
         while (true)
@@ -118,7 +117,6 @@ public class Main {
 		    		product = new VirtualProduct();
 		    	else
 		    		product = new PhysicalProduct();
-
 
 		    	// TODO: input product info
                 // TODO: use TakeInput function;
@@ -188,11 +186,31 @@ public class Main {
         }
     }
 
+    //Admin Functions
+    public static void browseSuggestedProducts()
+    {
+        Product suggestedProduct = ProductController.ChooseSuggestedProduct();
+        if(suggestedProduct == null) {
+            System.out.println("No Suggested Products.");
+        }
+        else {
+            System.out.println(suggestedProduct.viewDetails() + "\n" +
+                    "\t1. Yes\n" +
+                    "\t2. No \n" +
+                    "\tWant to Add ? ");
+            int choice = sc.nextInt();
+            if(choice == 1) {
+                ProductController.addProduct(suggestedProduct);
+                ProductController.deleteSuggestedProduct(suggestedProduct);
+                println("Added to Shopping Cart!");
+            }
+        }
+    }
+
     //User & Store Owner Functions
     public static void suggestProduct()
     {
         Product product;
-
         println("\t1. Virtual Product\n" +
                 "\t2. Physical Product");
 
