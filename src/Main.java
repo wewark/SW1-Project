@@ -105,8 +105,8 @@ public class Main {
     	while (true) {
 		    println("-------Admin Dashboard-------");
 		    //Admin Functions goes here
-		    print("1. Add product\n" +
-				    "2. Back\n");
+		    print("\t1. Add product\n"
+                + "\t2. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
 		    if (userChoice == 1) {
@@ -121,6 +121,7 @@ public class Main {
 
 
 		    	// TODO: input product info
+                // TODO: use TakeInput function;
 			    ProductController.addProduct(product);
 			    // printing already done inside addProduct
 		    }
@@ -185,5 +186,26 @@ public class Main {
                 }
             }
         }
+    }
+
+    //User & Store Owner Functions
+    public static void suggestProduct()
+    {
+        Product product;
+
+        println("\t1. Virtual Product\n" +
+                "\t2. Physical Product");
+
+        int userChoice = sc.nextInt();
+        if (userChoice == 1)
+            product = new VirtualProduct();
+        else
+            product = new PhysicalProduct();
+
+        product.takeInput();    //Fill (Console Output Inside)
+
+        if (ProductController.addSuggestedProduct(product))
+            println("Added to Suggested, Admins will review suggestions soon!");
+
     }
 }

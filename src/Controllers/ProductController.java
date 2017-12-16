@@ -20,16 +20,23 @@ public class ProductController {
 //	public Models.Product product;
 
 	public static boolean addProduct(Product product) {
-		if (!product.accepted) {
-			System.out.println("Product not yet accepted");
-			return false;
-		}
-		else if (Product.exists(product)) {
+		if (Product.exists(product)) {
 			System.out.println("Product already exists");
 			return false;
 		}
 
 		Product.addToDB(product);
+		return true;
+	}
+
+	public static boolean addSuggestedProduct(Product product) {
+
+		if (Product.existsSuggested(product)) {
+			System.out.println("Product already exists");
+			return false;
+		}
+
+		Product.addToSuggestedDB(product);
 		return true;
 	}
 
