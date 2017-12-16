@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StoreOwner extends User {
-	ArrayList<StoreController> stores = new ArrayList<>();
+	public ArrayList<Store> stores = new ArrayList<>();
 
 	public boolean hasStore() {
 		return stores.isEmpty();
@@ -29,13 +29,7 @@ public class StoreOwner extends User {
 		super(userData);
 	}
 
-	public boolean addVirtualStore(String name) {
-		stores.add(new StoreController(name, this));
-		return true; // temporary return
-	}
-
-	public boolean addPhysicalStore(String name, String address) {
-		stores.add(new StoreController(name, address, this));
-		return true; // temporary return
+	public void addStore(Store store) {
+		stores.add(store);
 	}
 }

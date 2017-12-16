@@ -4,7 +4,7 @@
 
 - [x] Login (any type of users)
 - [x] Register (any type of users)
-- [ ] Add Store (Store owner)
+- [x] Add Store (Store owner)
 - [x] Add product to the system (Administrator)
 - [ ] Add product to store (Store owner)
 - [ ] Add brand to the system (Administrator)
@@ -14,4 +14,4 @@
 - [ ] View specific product details (Any type of users)
 - [x] Explore number of views to each product in a store (Premium store owner)
 - [x] Get the most viewed product in a store (Premium Store owner)
-- [ ] Provide voucher cards (Administrator)
+- [ ] Provide voucher cards (Administrator) 

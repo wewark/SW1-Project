@@ -93,12 +93,22 @@ public class Main {
 
     private static void UserMain() {
         println("-------User Dashboard-------");
-        //User Functions goes here
+        //User Functions go here
     }
 
     private static void StoreOwnerMain() {
-        println("-------Store-Owner Dashboard-------");
-        //StoreOwner Functions goes here
+    	while (true) {
+		    println("-------Store-Owner Dashboard-------");
+		    //StoreOwner Functions go here
+		    print("1. Add store\n" +
+				    "2. Back\n");
+
+		    int userChoice = sc.nextInt();
+		    sc.nextLine();
+		    if (userChoice == 1)
+			    storeOwnerAddStore();
+		    else return;
+	    }
     }
 
     private static void AdminMain() {
@@ -109,21 +119,8 @@ public class Main {
 				    "2. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
-		    if (userChoice == 1) {
-			    Product product;
-		    	println("\t1. Virtual Product\n" +
-					    "\t2. Physical Product");
-		    	userChoice = sc.nextInt(); sc.nextLine();
-		    	if (userChoice == 1)
-		    		product = new VirtualProduct();
-		    	else
-		    		product = new PhysicalProduct();
-
-
-		    	// TODO: input product info
-			    ProductController.addProduct(product);
-			    // printing already done inside addProduct
-		    }
+		    if (userChoice == 1)
+		    	adminAddProduct();
 		    else return;
 	    }
     }
@@ -135,7 +132,9 @@ public class Main {
         System.out.print(string);
     }
 
-    //User Functions
+    /*
+     * User Functions
+     */
     public static void browseStoresProducts()
     {
         StoreController storeController = new StoreController(StoreController.chooseStores());
@@ -161,7 +160,9 @@ public class Main {
         }
     }
 
-    //Store Owner Functions
+    /*
+     * Store Owner Functions
+     */
     public static void browseStoresProductsWithViews()
     {
         StoreController storeController = new StoreController(StoreController.chooseStores());
@@ -186,4 +187,44 @@ public class Main {
             }
         }
     }
+
+    static void storeOwnerAddStore() {
+    	StoreController storeController = new StoreController();
+    	Store store;
+	    println("\t1. Virtual Store\n" +
+			    "\t2. Physical Store");
+	    int userChoice = sc.nextInt(); sc.nextLine();
+
+	    println("Store Name: ");
+	    String storeName = sc.nextLine();
+	    if (userChoice == 1)
+		    store = new VirtualStore(storeName, (StoreOwner) Session.User);
+	    else {
+		    System.out.println("Address: ");
+		    String address = sc.nextLine();
+		    store = new PhysicalStore(storeName, address, (StoreOwner) Session.User);
+	    }
+
+	    StoreController.addStore(store, (StoreOwner) Session.User);
+	    println("Store added successfully");
+    }
+
+	/*
+	 * Admin Functions
+	 */
+	static void adminAddProduct() {
+		Product product;
+		println("\t1. Virtual Product\n" +
+				"\t2. Physical Product");
+		int userChoice = sc.nextInt(); sc.nextLine();
+		if (userChoice == 1)
+			product = new VirtualProduct();
+		else
+			product = new PhysicalProduct();
+
+
+		// TODO: input product info
+		ProductController.addProduct(product);
+		// printing already done inside addProduct
+	}
 }

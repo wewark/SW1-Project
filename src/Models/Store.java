@@ -20,12 +20,34 @@ public abstract class Store {
 	public String name;
 	public StoreOwner storeOwner;
 	public ArrayList<StoreProduct> products = new ArrayList<>();
-	public Store(int ID, String name, StoreOwner storeOwner) {
-		this.ID = ID;
+
+	public Store(String name, StoreOwner storeOwner) {
+		this.ID = 1; // temp ID
 		this.name = name;
 		this.storeOwner = storeOwner;
-		Platform.Stores.add(this);
+	}
+
+	public static boolean addtoDB(Store store) {
+		store.ID = 1;        //TODO get latest ID from DB if we're saving data.
+		Platform.Stores.add(store);
+		return true;
+	}
+
+	public static boolean exists(Store store) {
+		return Platform.Stores.indexOf(store) != -1;
 	}
 
 	public abstract boolean addProduct(Product product, float Price);
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null ||
+				!Product.class.isAssignableFrom(obj.getClass()))
+			return false;
+
+		Product other = (Product) obj;
+		// Stores are compared using their names only
+		// So all store names are unique
+		return name.equals(other.name);
+	}
 }
