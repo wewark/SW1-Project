@@ -29,7 +29,7 @@ public class GlobalPromotion extends PromotionCard {
         }
 
         //Add To Database
-        Platform.promoCards.add(newPromo);
+        Platform.PromoCards.add(newPromo);
         return true;
     }
 

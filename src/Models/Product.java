@@ -23,7 +23,7 @@ public class Product {
 	public boolean accepted;
 	public static boolean addProduct(Product product) {
 		product.ID = String.valueOf(nextID++);		//TODO get latest ID from DB if we're saving data.
-		Platform.products.add(product);
+		Platform.Products.add(product);
 		return true;
 	}
 
