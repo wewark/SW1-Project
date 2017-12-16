@@ -16,15 +16,11 @@ package Controllers;
 import Models.Platform;
 import Models.Product;
 
-public class ProductController {
-//	public Models.Product product;
+import java.util.Scanner;
 
+public class ProductController {
 	public static boolean addProduct(Product product) {
-		if (!product.accepted) {
-			System.out.println("Product not yet accepted");
-			return false;
-		}
-		else if (Product.exists(product)) {
+		if (Product.exists(product)) {
 			System.out.println("Product already exists");
 			return false;
 		}
@@ -33,22 +29,47 @@ public class ProductController {
 		return true;
 	}
 
+	public static boolean addSuggestedProduct(Product product) {
+
+		if (Product.existsSuggested(product)) {
+			System.out.println("Product already exists");
+			return false;
+		}
+
+		Product.addToSuggestedDB(product);
+		return true;
+	}
+
+	public static boolean deleteSuggestedProduct(Product product) {
+
+		if (Product.existsSuggested(product)) {
+			return Product.deleteSuggestedDB(product);
+		}
+		return false;
+	}
+
 	public void viewProduct() {
 
 	}
 
-//	public boolean updateProduct(Models.Product product) {
-//
-//	}
-//
-//	public boolean deleteProduct() {
-//
-//	}
-//	public boolean applyProduct(Models.Product product) {
-//
-//	}
-//
-//	public ArrayList<Product> getProducts(String query) {
-//
-//	}
+
+	//Console Function
+	public static Product ChooseSuggestedProduct()
+	{
+		Scanner sc = new Scanner(System.in);
+		int i = 0;
+		if(Platform.SuggestedProducts.size() > 0) {
+			for (Product product : Platform.SuggestedProducts) {
+				System.out.println(++i + ". " + product.viewDetails());
+			}
+			System.out.print("Choose Product: ");
+			while ((i = sc.nextInt()) < 1 || i > Platform.SuggestedProducts.size()) //Input-Validation
+				System.out.print("Invalid Input");
+
+			return Platform.SuggestedProducts.get(i - 1);
+		}
+		return null;
+	}
+
+
 }
