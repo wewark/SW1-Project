@@ -12,7 +12,7 @@ public class Main {
         while (true) {
             println("1. Login\n" +
                     "2. Signup\n" +
-                    "3. Exit"
+                    "0. Exit"
             );
             userChoice = sc.nextInt();
             if (userChoice == 1) {
@@ -20,7 +20,7 @@ public class Main {
                     loggedInMain();
             } else if (userChoice == 2)
                 signUp();
-            else if (userChoice == 3)
+            else if (userChoice == 0)
                 break;
             else
                 println("Invalid Option");
@@ -110,6 +110,7 @@ public class Main {
 		    print(  "\t1. Add store\n" +
                     "\t2. Browse Store's Products with Views\n" +
                     "\t3. Suggest Product\n" +
+                    "\t4. Create Promotion To Store\n" +
                     "\t0. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
@@ -119,6 +120,8 @@ public class Main {
 		        browseStoresProductsWithViews();
 		    else if(userChoice == 3)
 		        suggestProduct();
+		    else if(userChoice == 4)
+		        storeAddPromo();
 		    else return;
 	    }
     }
@@ -146,6 +149,7 @@ public class Main {
     public static void println(String string) {
         System.out.println(string);
     }
+
     public static void print(String string) {
         System.out.print(string);
     }
@@ -255,14 +259,24 @@ public class Main {
         System.out.print("Number Of Serials: ");    numberOfSerials = sc.nextInt();
         PromotionCard promotionCard = new GlobalPromotion(offPercentage, offMax);
         if(PromotionController.CreatePromotionCard(promotionCard, numberOfSerials))
-        {
             promotionCard.printSerials();
-        }
         else
-        {
             System.out.println("Creation Failed!");
-        }
+    }
 
+    static void storeAddPromo() {
+        double offPercentage,  offMax;
+        int numberOfSerials;
+        Store store = ((StoreOwner)Session.User).chooseStores();
+        System.out.println("Enter New Promotion Data: ");
+        System.out.print("off-Percentage: ");		offPercentage = sc.nextDouble();
+        System.out.print("Max-Discount: ");	        offMax = sc.nextDouble();
+        System.out.print("Number Of Serials: ");    numberOfSerials = sc.nextInt();
+        PromotionCard promotionCard = new StorePromotion(offPercentage, offMax, store);
+        if(PromotionController.CreatePromotionCard(promotionCard, numberOfSerials))
+            promotionCard.printSerials();
+        else
+            System.out.println("Creation Failed!");
     }
 
 
