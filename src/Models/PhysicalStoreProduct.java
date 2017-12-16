@@ -15,8 +15,7 @@ package Models;
 
 
 public class PhysicalStoreProduct extends StoreProduct {
-    public PhysicalStoreProduct(float price, Product product) {
-        super(price);
-        this.product = product;
+    public PhysicalStoreProduct(Product product, float price) {
+        super(product, price);
     }
 }

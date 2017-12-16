@@ -114,6 +114,7 @@ public class Main {
                     "\t2. Browse Store's Products with Views\n" +
                     "\t3. Suggest Product\n" +
                     "\t4. Create Promotion To Store\n" +
+                    "\t5. Store Owner Add Product To Store\n" +
                     "\t0. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
@@ -125,11 +126,13 @@ public class Main {
 		        suggestProduct();
 		    else if(userChoice == 4)
 		        storeAddPromo();
+		    else if (userChoice == 5)
+		    	storeOwnerAddProductToStore();
 		    else return;
 	    }
     }
 
-    private static void AdminMain() {
+	private static void AdminMain() {
     	while (true) {
 		    println("-------Admin Dashboard-------");
 		    //Admin Functions goes here
@@ -233,6 +236,29 @@ public class Main {
 	    StoreController.addStore(store, (StoreOwner) Session.User);
 	    println("Store added successfully");
     }
+
+
+	private static void storeOwnerAddProductToStore() {
+    	String productName, storeName;
+    	float price;
+		print("Store Name: ");
+		storeName = sc.nextLine();
+		print("Product Name: ");
+		productName = sc.nextLine();
+		print("Price of sale: ");
+		price = sc.nextFloat(); sc.nextLine();
+
+		Product product = ProductController.getProduct(productName);
+		Store store = ((StoreOwner) Session.User).getStore(storeName);
+
+		if (product == null)
+			println("Product not found!");
+		else if (store == null)
+			println("Store not found!");
+		else if (!store.addProduct(product, price))
+			println("Can't add this product to this store!\n" +
+					"store is virtual while the product is physical or vice versa");
+	}
 
 	/*
 	 * Admin Functions

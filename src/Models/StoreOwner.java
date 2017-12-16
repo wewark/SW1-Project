@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class StoreOwner extends User {
-	public ArrayList<Store> stores = new ArrayList<>();
+	private ArrayList<Store> stores = new ArrayList<>();
 
 	public boolean hasStore() {
 		return stores.isEmpty();
@@ -49,5 +49,12 @@ public class StoreOwner extends User {
 			return stores.get(i - 1);
 		}
 		else return null;
+	}
+
+	public Store getStore(String name) {
+		for (Store store : stores)
+			if (store.name.equals(name))
+				return store;
+		return null;
 	}
 }

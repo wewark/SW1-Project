@@ -40,6 +40,18 @@ public abstract class Store {
 
 	public abstract boolean addProduct(Product product, float Price);
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null ||
+				!Product.class.isAssignableFrom(obj.getClass()))
+			return false;
+
+		Product other = (Product) obj;
+		// Stores are compared using their names only
+		// So all store names are unique
+		return name.equals(other.name);
+	}
+
 	public static Store chooseStores() {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;

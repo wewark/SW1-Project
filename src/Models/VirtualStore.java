@@ -10,11 +10,8 @@
 //
 
 
-
 package Models;
 
-
-import java.util.ArrayList;
 
 public class VirtualStore extends Store {
 	public VirtualStore(String name, StoreOwner storeOwner) {
@@ -23,10 +20,8 @@ public class VirtualStore extends Store {
 
 	@Override
 	public boolean addProduct(Product product, float Price) {
-		if(product instanceof VirtualProduct) {
-			products.add(new VirtualStoreProduct(Price, (VirtualProduct) product));
-			return true;
-		}
-		else return false;
+		if (!(product instanceof VirtualProduct)) return false;
+		products.add(new VirtualStoreProduct(Price, (VirtualProduct) product));
+		return true;
 	}
 }

@@ -6,7 +6,7 @@
 - [x] Register (any type of users)
 - [x] Add Store (Store owner)
 - [x] Add product to the system (Administrator)
-- [ ] Add product to store (Store owner)
+- [x] Add product to store (Store owner)
 - [ ] Add brand to the system (Administrator)
 - [ ] Suggest product (Normal users or store owners)
 - [ ] Buy product (Normal users) [Using voucher cards]
