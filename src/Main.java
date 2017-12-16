@@ -93,19 +93,35 @@ public class Main {
     private static void UserMain() {
         println("-------User Dashboard-------");
         //User Functions go here
+        print(  "\t1. Browse Store Products\n" +
+                "\t2. Suggest Product\n" +
+                "\t0. Back\n");
+
+        int userChoice = sc.nextInt();
+        sc.nextLine();
+        if (userChoice == 1)
+            browseStoresProducts();
+        else if(userChoice == 2)
+            suggestProduct();
+        else return;
     }
 
     private static void StoreOwnerMain() {
     	while (true) {
 		    println("-------Store-Owner Dashboard-------");
 		    //StoreOwner Functions go here
-		    print("1. Add store\n" +
-				    "2. Back\n");
+		    print(  "\t1. Add store\n" +
+                    "\t2. Browse Store's Products with Views\n" +
+                    "\t3. Suggest Product\n" +
+                    "\t0. Back\n");
 
-		    int userChoice = sc.nextInt();
-		    sc.nextLine();
+		    int userChoice = sc.nextInt(); sc.nextLine();
 		    if (userChoice == 1)
 			    storeOwnerAddStore();
+		    else if(userChoice == 2)
+		        browseStoresProductsWithViews();
+		    else if(userChoice == 3)
+		        suggestProduct();
 		    else return;
 	    }
     }
@@ -114,12 +130,15 @@ public class Main {
     	while (true) {
 		    println("-------Admin Dashboard-------");
 		    //Admin Functions goes here
-		    print("\t1. Add product\n"
-                + "\t2. Back\n");
+		    print(  "\t1. Add Product\n" +
+                    "\t2. Add Suggested Product\n" +
+                    "\t0. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
 		    if (userChoice == 1)
 		    	adminAddProduct();
+		    else if(userChoice == 2)
+                browseSuggestedProducts();
 		    else return;
 	    }
     }
@@ -227,7 +246,7 @@ public class Main {
 		// printing already done inside addProduct
 	}
 
-    //Admin Functions
+
     public static void browseSuggestedProducts()
     {
         Product suggestedProduct = ProductController.ChooseSuggestedProduct();
