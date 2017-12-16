@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StoreOwner extends User {
-	public ArrayList<Store> stores = new ArrayList<>();
+	private ArrayList<Store> stores = new ArrayList<>();
 
 	public boolean hasStore() {
 		return stores.isEmpty();
@@ -31,5 +31,12 @@ public class StoreOwner extends User {
 
 	public void addStore(Store store) {
 		stores.add(store);
+	}
+
+	public Store getStore(String name) {
+		for (Store store : stores)
+			if (store.name.equals(name))
+				return store;
+		return null;
 	}
 }

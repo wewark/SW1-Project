@@ -86,4 +86,11 @@ public abstract class Product {
 		System.out.print("Company: ");	company = sc.next();
 		System.out.print("Avg. Price: ");	price = sc.nextFloat();
 	}
+
+	public static Product getProduct(String name) {
+		for (Product product : Platform.Products)
+			if (product.name.equals(name))
+				return product;
+		return null;
+	}
 }

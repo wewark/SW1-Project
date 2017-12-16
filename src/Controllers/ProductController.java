@@ -5,7 +5,7 @@
 //  @ Project : Untitled
 //  @ File Name : ProductController.java
 //  @ Date : 14/12/2017
-//  @ Author : 
+//  @ Author :
 //
 //
 
@@ -38,6 +38,10 @@ public class ProductController {
 
 		Product.addToSuggestedDB(product);
 		return true;
+	}
+
+	public static Product getProduct(String name) {
+		return Product.getProduct(name);
 	}
 
 	public static boolean deleteSuggestedProduct(Product product) {
