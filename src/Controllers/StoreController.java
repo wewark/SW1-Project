@@ -14,6 +14,7 @@ package Controllers;
 
 
 import Models.PhysicalStore;
+import Models.Platform;
 import Models.StoreOwner;
 import Models.VirtualStore;
 
@@ -22,10 +23,12 @@ public class StoreController {
 
 	public StoreController(String name, String address, StoreOwner storeOwner) {
 		store = new PhysicalStore(1 /* temp ID*/, name, address, storeOwner);
+		Platform.Stores.add(store);
 	}
 
 	public StoreController(String name, StoreOwner storeOwner) {
 		store = new VirtualStore(1 /* temp ID*/, name, storeOwner);
+		Platform.Stores.add(store);
 	}
 
 	public void viewStore() {

@@ -8,4 +8,5 @@ public class Platform {
 	public static ArrayList<Product> Products = new ArrayList<>();
 	public static ArrayList<Product> AppliedProducts = new ArrayList<>();
 	public static ArrayList<PromotionCard> PromoCards = new ArrayList<>();
+	public static ArrayList<Store> Stores = new ArrayList<>();
 }
