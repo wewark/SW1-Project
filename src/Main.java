@@ -88,22 +88,24 @@ public class Main {
     }
 
     private static void UserMain() {
-        println("-------User Dashboard-------");
-        //User Functions go here
-        print(  "\t1. Browse Store Products\n" +
-                "\t2. Suggest Product\n" +
-                "\t3. Checkout\n" +
-                "\t0. Back\n");
+        while(true) {
+            println("-------User Dashboard-------");
+            //User Functions go here
+            print("\t1. Browse Store Products\n" +
+                    "\t2. Suggest Product\n" +
+                    "\t3. Checkout\n" +
+                    "\t0. Back\n");
 
-        int userChoice = sc.nextInt();
-        sc.nextLine();
-        if (userChoice == 1)
-            browseStoresProducts();
-        else if(userChoice == 2)
-            suggestProduct();
-        else if(userChoice == 3)
-            checkout();
-        else return;
+            int userChoice = sc.nextInt();
+            sc.nextLine();
+            if (userChoice == 1)
+                browseStoresProducts();
+            else if (userChoice == 2)
+                suggestProduct();
+            else if (userChoice == 3)
+                checkout();
+            else return;
+        }
     }
 
     private static void StoreOwnerMain() {
@@ -114,7 +116,7 @@ public class Main {
                     "\t2. Browse Store's Products with Views\n" +
                     "\t3. Suggest Product\n" +
                     "\t4. Create Promotion To Store\n" +
-                    "\t5. Store Owner Add Product To Store\n" +
+                    "\t5. Add Product To Store\n" +
                     "\t0. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
@@ -324,7 +326,7 @@ public class Main {
             if(choice == 1) {
                 ProductController.addProduct(suggestedProduct);
                 ProductController.deleteSuggestedProduct(suggestedProduct);
-                println("Added to Shopping Cart!");
+                println("Added to Products!");
             }
         }
     }

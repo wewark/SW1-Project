@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class ShoppingCart {
 	public String userID;
-	public ArrayList<Order> orders;
+	public ArrayList<Order> orders = new ArrayList<>();
 	public boolean addOrder(StoreProduct product, int Quantity) {
 		orders.add(new Order(product, Quantity));
 		return true;

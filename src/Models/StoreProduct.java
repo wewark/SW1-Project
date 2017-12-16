@@ -18,9 +18,10 @@ public abstract class StoreProduct {
 	public Product product;
 	public int view = 0;
     public Store store;
-	public StoreProduct(Product product, float price) {
+	public StoreProduct(Product product, float price, Store store) {
 		this.product = product;
 		this.price = price;
+		this.store = store;
 	}
 	public  String detailsString(){
 		return "Name: " + product.name +  "\t Price: " + price;

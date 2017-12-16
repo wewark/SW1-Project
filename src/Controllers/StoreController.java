@@ -64,7 +64,7 @@ public class StoreController {
 		sortedProducts.sort(Comparator.comparingDouble(StoreProduct::getView).reversed());	//TODO Test Sorting
 		if(sortedProducts.size() > 0) {
 			for (StoreProduct product : store.products) {
-				System.out.println(product.view + " Views | " + product.detailsString());
+				System.out.println(++i + ".\t" + product.view + " Views | " + product.detailsString());
 			}
 			System.out.print("Choose Product: ");
 			while ((i = sc.nextInt()) < 1 || i > store.products.size())
