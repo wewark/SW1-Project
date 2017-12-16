@@ -19,4 +19,5 @@ public abstract class Store {
 	public String name;
 	public StoreOwner storeOwner;
 	public abstract boolean addProduct(Product product, float Price);
+
 }

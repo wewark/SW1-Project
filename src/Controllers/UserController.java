@@ -1,6 +1,8 @@
 package Controllers;
 
+import Models.Admin;
 import Models.Session;
+import Models.StoreOwner;
 import Models.User;
 
 import java.util.HashMap;
@@ -10,7 +12,14 @@ public class UserController {
 
 	public static boolean register(HashMap<String, String> userData) {
 		if (User.exists(userData.get("username"))) return false;
-		User.addUser(new User(userData));
+		String type = userData.get("type").toLowerCase();
+		if(type.equals("user"))
+			User.addUser(new User(userData));
+		else if(type.equals("storeowner"))
+			User.addUser(new StoreOwner(userData));
+		else if(type.equals("admin"))
+			User.addUser(new Admin(userData));
+		else return false;
 		return true;
 	}
 	

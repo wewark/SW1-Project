@@ -14,9 +14,15 @@
 package Models;
 
 
+import java.util.HashMap;
+
 public class StoreOwner extends User {
 	public Store store;
 	public boolean hasStore() {
 		return store != null;
+	}
+
+	public StoreOwner(HashMap<String, String> userData) {
+		super(userData);
 	}
 }
