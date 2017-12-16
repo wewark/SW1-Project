@@ -40,6 +40,11 @@ public abstract class Product {
 		return true;
 	}
 
+	public static boolean deleteSuggestedDB(Product product) {
+		return Platform.SuggestedProducts.remove(product);
+	}
+
+
 	public static boolean exists(Product product) {
 		return Platform.Products.indexOf(product) != -1;
 	}
@@ -69,7 +74,7 @@ public abstract class Product {
 
 	public String viewDetails(){
 		view++;
-		return "Name: \t" + name + " Brand: \t " + brand +  " Company: \t " + company +  "Avg. Price: \t " + price;
+		return "Name: " + name + "\t Brand: " + brand +  "\t Company: " + company +  "\t Avg. Price: " + price;
 	}
 
 	//Console Function

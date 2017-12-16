@@ -22,12 +22,12 @@ public abstract class StoreProduct {
 		this.price = price;
 	}
 	public  String detailsString(){
-		return "Name: \t" + product.name +  "Price: \t " + price;
+		return "Name: " + product.name +  "\t Price: " + price;
 	}
 	public  String viewDetails(){
 		product.view++;
 		view++;
-		return "Name: \t" + product.name + " Brand: \t " + product.brand +  " Company: \t " + product.company +  "Price: \t " + price;
+		return "Name: " + product.name + "\t Brand:  " + product.brand +  "\t Company: " + product.company +  "\t Price: " + price;
 	}
 
 	//Console Function
