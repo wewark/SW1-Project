@@ -19,6 +19,10 @@ import java.util.ArrayList;
 public class VirtualStore extends Store {
 	public ArrayList<VirtualStoreProduct> products;
 
+	public VirtualStore(int ID, String name, StoreOwner storeOwner) {
+		super(ID, name, storeOwner);
+	}
+
 	@Override
 	public boolean addProduct(Product product, float Price) {
 		if(product instanceof VirtualProduct) {

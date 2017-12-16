@@ -10,14 +10,19 @@
 //
 
 
-
 package Models;
 
 
 public abstract class Store {
-	public String ID;
+	public int ID;
 	public String name;
 	public StoreOwner storeOwner;
-	public abstract boolean addProduct(Product product, float Price);
 
+	public Store(int ID, String name, StoreOwner storeOwner) {
+		this.ID = ID;
+		this.name = name;
+		this.storeOwner = storeOwner;
+	}
+
+	public abstract boolean addProduct(Product product, float Price);
 }

@@ -10,19 +10,32 @@
 //
 
 
-
 package Models;
 
 
+import Controllers.StoreController;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StoreOwner extends User {
-	public Store store;
+	ArrayList<StoreController> stores = new ArrayList<>();
+
 	public boolean hasStore() {
-		return store != null;
+		return stores.isEmpty();
 	}
 
 	public StoreOwner(HashMap<String, String> userData) {
 		super(userData);
+	}
+
+	public boolean addVirtualStore(String name) {
+		stores.add(new StoreController(name, this));
+		return true; // temporary return
+	}
+
+	public boolean addPhysicalStore(String name, String address) {
+		stores.add(new StoreController(name, address, this));
+		return true; // temporary return
 	}
 }
