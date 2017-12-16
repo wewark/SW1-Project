@@ -10,16 +10,33 @@
 //
 
 
-
 package Controllers;
 
 
+import Models.Platform;
+import Models.Product;
+
 public class ProductController {
-	public Models.Product product;
-	public void viewProduct() {
-	
+//	public Models.Product product;
+
+	public static boolean addProduct(Product product) {
+		if (!product.accepted) {
+			System.out.println("Product not yet accepted");
+			return false;
+		}
+		else if (Product.exists(product)) {
+			System.out.println("Product already exists");
+			return false;
+		}
+
+		Product.addToDB(product);
+		return true;
 	}
-	
+
+	public void viewProduct() {
+
+	}
+
 //	public boolean updateProduct(Models.Product product) {
 //
 //	}
@@ -27,11 +44,6 @@ public class ProductController {
 //	public boolean deleteProduct() {
 //
 //	}
-//
-//	public boolean addProduct(Models.Product product) {
-//
-//	}
-//
 //	public boolean applyProduct(Models.Product product) {
 //
 //	}

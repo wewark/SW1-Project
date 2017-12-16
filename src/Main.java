@@ -1,5 +1,7 @@
+import Controllers.ProductController;
 import Controllers.UserController;
 import Models.Admin;
+import Models.Product;
 import Models.Session;
 import Models.StoreOwner;
 
@@ -93,19 +95,29 @@ public class Main {
     private static void UserMain() {
         println("-------User Dashboard-------");
         //User Functions goes here
-        return;
     }
 
     private static void StoreOwnerMain() {
         println("-------Store-Owner Dashboard-------");
         //StoreOwner Functions goes here
-        return;
     }
 
     private static void AdminMain() {
-        println("-------Admin Dashboard-------");
-        //Admin Functions goes here
-        return;
+    	while (true) {
+		    println("-------Admin Dashboard-------");
+		    //Admin Functions goes here
+		    print("1. Add product\n" +
+				    "2. Back\n");
+
+		    int userChoice = sc.nextInt();
+		    if (userChoice == 1) {
+			    Product product = new Product();
+		    	// TODO: input product info
+			    ProductController.addProduct(product);
+			    // printing already done inside addProduct
+		    }
+		    else return;
+	    }
     }
 
     public static void println(String string) {

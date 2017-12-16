@@ -19,12 +19,21 @@ public class Product {
 	public String brand;
 	public String company;
 	public double price;
-//	public DateTime date;
+	//	public DateTime date;
 	public boolean accepted;
-	public static boolean addProduct(Product product) {
-		product.ID = String.valueOf(nextID++);		//TODO get latest ID from DB if we're saving data.
+
+	public Product() {
+
+	}
+
+	public static boolean addToDB(Product product) {
+		product.ID = String.valueOf(nextID++);        //TODO get latest ID from DB if we're saving data.
 		Platform.Products.add(product);
 		return true;
+	}
+
+	public static boolean exists(Product product) {
+		return Platform.Products.indexOf(product) != -1;
 	}
 
 	public Product(String name, String brand, String company, double price) {
@@ -33,5 +42,17 @@ public class Product {
 		this.company = company;
 		this.price = price;
 		this.accepted = false;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null ||
+				!Product.class.isAssignableFrom(obj.getClass()))
+			return false;
+
+		Product other = (Product) obj;
+		return name.equals(other.name) &&
+				brand.equals(other.brand) &&
+				company.equals(other.company);
 	}
 }
