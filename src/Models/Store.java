@@ -22,6 +22,7 @@ public abstract class Store {
 		this.ID = ID;
 		this.name = name;
 		this.storeOwner = storeOwner;
+		Platform.Stores.add(this);
 	}
 
 	public abstract boolean addProduct(Product product, float Price);
