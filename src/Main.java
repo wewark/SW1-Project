@@ -1,11 +1,8 @@
+import Controllers.ProductController;
 import Controllers.ShoppingCartController;
 import Controllers.StoreController;
 import Controllers.UserController;
-import Models.Admin;
-import Models.Product;
-import Models.Session;
-import Models.StoreOwner;
-import Models.StoreProduct;
+import Models.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -111,9 +108,18 @@ public class Main {
 		    print("1. Add product\n" +
 				    "2. Back\n");
 
-		    int userChoice = sc.nextInt();
+		    int userChoice = sc.nextInt(); sc.nextLine();
 		    if (userChoice == 1) {
-			    Product product = new Product();
+			    Product product;
+		    	println("\t1. Virtual Product\n" +
+					    "\t2. Physical Product");
+		    	userChoice = sc.nextInt(); sc.nextLine();
+		    	if (userChoice == 1)
+		    		product = new VirtualProduct();
+		    	else
+		    		product = new PhysicalProduct();
+
+
 		    	// TODO: input product info
 			    ProductController.addProduct(product);
 			    // printing already done inside addProduct

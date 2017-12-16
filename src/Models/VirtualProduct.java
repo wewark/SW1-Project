@@ -16,4 +16,8 @@ public class VirtualProduct extends Product {
 		super(name, brand, company, price);
 		this.serial = serial;
 	}
+
+	public VirtualProduct() {
+		super();
+	}
 }

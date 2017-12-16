@@ -21,4 +21,8 @@ public class PhysicalProduct extends Product {
 		super(name, brand, company, price);
 		this.weight = weight;
 	}
+
+	public PhysicalProduct() {
+		super();
+	}
 }
