@@ -64,7 +64,6 @@ public class Main {
         if(!Session.IsLoggedIn())
             return;
         ////////////////////
-
         int userChoice;
         println("Welcome, " + Session.User.name + "!.");
         while (true)
@@ -105,12 +104,25 @@ public class Main {
     	while (true) {
 		    println("-------Admin Dashboard-------");
 		    //Admin Functions goes here
-		    print("1. Add product\n" +
-				    "2. Back\n");
+		    print("\t1. Add product\n"
+                + "\t2. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
-		    if (userChoice == 1)
-		    	adminAddProduct();
+		    if (userChoice == 1) {
+			    Product product;
+		    	println("\t1. Virtual Product\n" +
+					    "\t2. Physical Product");
+		    	userChoice = sc.nextInt(); sc.nextLine();
+		    	if (userChoice == 1)
+		    		product = new VirtualProduct();
+		    	else
+		    		product = new PhysicalProduct();
+
+		    	// TODO: input product info
+                // TODO: use TakeInput function;
+			    ProductController.addProduct(product);
+			    // printing already done inside addProduct
+		    }
 		    else return;
 	    }
     }
@@ -148,9 +160,7 @@ public class Main {
         }
     }
 
-    /*
-     * Store Owner Functions
-     */
+    //Store Owner Functions
     public static void browseStoresProductsWithViews()
     {
         StoreController storeController = new StoreController(StoreController.chooseStores());
@@ -176,43 +186,44 @@ public class Main {
         }
     }
 
-    static void storeOwnerAddStore() {
-    	StoreController storeController = new StoreController();
-    	Store store;
-	    println("\t1. Virtual Store\n" +
-			    "\t2. Physical Store");
-	    int userChoice = sc.nextInt(); sc.nextLine();
-
-	    println("Store Name: ");
-	    String storeName = sc.nextLine();
-	    if (userChoice == 1)
-		    store = new VirtualStore(storeName, (StoreOwner) Session.User);
-	    else {
-		    System.out.println("Address: ");
-		    String address = sc.nextLine();
-		    store = new PhysicalStore(storeName, address, (StoreOwner) Session.User);
-	    }
-
-	    StoreController.addStore(store, (StoreOwner) Session.User);
-	    println("Store added successfully");
+    //Admin Functions
+    public static void browseSuggestedProducts()
+    {
+        Product suggestedProduct = ProductController.ChooseSuggestedProduct();
+        if(suggestedProduct == null) {
+            System.out.println("No Suggested Products.");
+        }
+        else {
+            System.out.println(suggestedProduct.viewDetails() + "\n" +
+                    "\t1. Yes\n" +
+                    "\t2. No \n" +
+                    "\tWant to Add ? ");
+            int choice = sc.nextInt();
+            if(choice == 1) {
+                ProductController.addProduct(suggestedProduct);
+                ProductController.deleteSuggestedProduct(suggestedProduct);
+                println("Added to Shopping Cart!");
+            }
+        }
     }
 
-	/*
-	 * Admin Functions
-	 */
-	static void adminAddProduct() {
-		Product product;
-		println("\t1. Virtual Product\n" +
-				"\t2. Physical Product");
-		int userChoice = sc.nextInt(); sc.nextLine();
-		if (userChoice == 1)
-			product = new VirtualProduct();
-		else
-			product = new PhysicalProduct();
+    //User & Store Owner Functions
+    public static void suggestProduct()
+    {
+        Product product;
+        println("\t1. Virtual Product\n" +
+                "\t2. Physical Product");
 
+        int userChoice = sc.nextInt();
+        if (userChoice == 1)
+            product = new VirtualProduct();
+        else
+            product = new PhysicalProduct();
 
-		// TODO: input product info
-		ProductController.addProduct(product);
-		// printing already done inside addProduct
-	}
+        product.takeInput();    //Fill (Console Output Inside)
+
+        if (ProductController.addSuggestedProduct(product))
+            println("Added to Suggested, Admins will review suggestions soon!");
+
+    }
 }

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class PhysicalStore extends Store {
 	public String address;
 
-	public PhysicalStore(String name, String address, StoreOwner storeOwner) {
-		super(name, storeOwner);
+	public PhysicalStore(int ID, String name, String address, StoreOwner storeOwner) {
+		super(ID, name, storeOwner);
 		this.address = address;
 	}
 

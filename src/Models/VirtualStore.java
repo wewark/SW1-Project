@@ -17,8 +17,8 @@ package Models;
 import java.util.ArrayList;
 
 public class VirtualStore extends Store {
-	public VirtualStore(String name, StoreOwner storeOwner) {
-		super(name, storeOwner);
+	public VirtualStore(int ID, String name, StoreOwner storeOwner) {
+		super(ID, name, storeOwner);
 	}
 
 	@Override
