@@ -64,7 +64,6 @@ public class Main {
         if(!Session.IsLoggedIn())
             return;
         ////////////////////
-
         int userChoice;
         println("Welcome, " + Session.User.name + "!.");
         while (true)
@@ -118,8 +117,8 @@ public class Main {
     	while (true) {
 		    println("-------Admin Dashboard-------");
 		    //Admin Functions goes here
-		    print("1. Add product\n" +
-				    "2. Back\n");
+		    print("\t1. Add product\n"
+                + "\t2. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
 		    if (userChoice == 1)
@@ -253,4 +252,45 @@ public class Main {
 		ProductController.addProduct(product);
 		// printing already done inside addProduct
 	}
+
+    //Admin Functions
+    public static void browseSuggestedProducts()
+    {
+        Product suggestedProduct = ProductController.ChooseSuggestedProduct();
+        if(suggestedProduct == null) {
+            System.out.println("No Suggested Products.");
+        }
+        else {
+            System.out.println(suggestedProduct.viewDetails() + "\n" +
+                    "\t1. Yes\n" +
+                    "\t2. No \n" +
+                    "\tWant to Add ? ");
+            int choice = sc.nextInt();
+            if(choice == 1) {
+                ProductController.addProduct(suggestedProduct);
+                ProductController.deleteSuggestedProduct(suggestedProduct);
+                println("Added to Shopping Cart!");
+            }
+        }
+    }
+
+    //User & Store Owner Functions
+    public static void suggestProduct()
+    {
+        Product product;
+        println("\t1. Virtual Product\n" +
+                "\t2. Physical Product");
+
+        int userChoice = sc.nextInt();
+        if (userChoice == 1)
+            product = new VirtualProduct();
+        else
+            product = new PhysicalProduct();
+
+        product.takeInput();    //Fill (Console Output Inside)
+
+        if (ProductController.addSuggestedProduct(product))
+            println("Added to Suggested, Admins will review suggestions soon!");
+
+    }
 }

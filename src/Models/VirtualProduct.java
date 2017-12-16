@@ -10,6 +10,8 @@
 //
 package Models;
 
+import java.util.Scanner;
+
 public class VirtualProduct extends Product {
 	public String serial;
 	public VirtualProduct(String name, String brand, String company, double price, String serial) {
@@ -20,4 +22,11 @@ public class VirtualProduct extends Product {
 	public VirtualProduct() {
 		super();
 	}
+
+    @Override
+    public void takeInput() {
+		super.takeInput();
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Serial: ");	serial = sc.next();		//TODO: Should have a list of Serials(we're using single for prototyping only)
+    }
 }

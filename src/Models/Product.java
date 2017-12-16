@@ -12,7 +12,9 @@
 package Models;
 
 
-public class Product {
+import java.util.Scanner;
+
+public abstract class Product {
 	public static int nextID = 0;
 	public String ID;
 	public String name;
@@ -20,7 +22,6 @@ public class Product {
 	public String company;
 	public double price;
 	//	public DateTime date;
-	public boolean accepted;
 	public int view = 0;
 
 	public Product() {
@@ -33,8 +34,23 @@ public class Product {
 		return true;
 	}
 
+	public static boolean addToSuggestedDB(Product product) {
+		product.ID = String.valueOf(nextID++);        //TODO get latest ID from DB if we're saving data.
+		Platform.SuggestedProducts.add(product);
+		return true;
+	}
+
+	public static boolean deleteSuggestedDB(Product product) {
+		return Platform.SuggestedProducts.remove(product);
+	}
+
+
 	public static boolean exists(Product product) {
 		return Platform.Products.indexOf(product) != -1;
+	}
+
+	public static boolean existsSuggested(Product product) {
+		return Platform.SuggestedProducts.indexOf(product) != -1;
 	}
 
 	public Product(String name, String brand, String company, double price) {
@@ -42,7 +58,6 @@ public class Product {
 		this.brand = brand;
 		this.company = company;
 		this.price = price;
-		this.accepted = false;
 	}
 
 	@Override
@@ -59,7 +74,17 @@ public class Product {
 
 	public String viewDetails(){
 		view++;
-		return "Name: \t" + name + " Brand: \t " + brand +  " Company: \t " + company +  "Avg. Price: \t " + price;
+		return "Name: " + name + "\t Brand: " + brand +  "\t Company: " + company +  "\t Avg. Price: " + price;
+	}
+
+	//Console Function
+	public void takeInput(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter New Product Data: ");
+		System.out.print("Name: ");		name = sc.next();
+		System.out.print("Brand: ");	brand = sc.next();
+		System.out.print("Company: ");	company = sc.next();
+		System.out.print("Avg. Price: ");	price = sc.nextFloat();
 	}
 
 	public static Product getProduct(String name) {

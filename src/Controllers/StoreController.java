@@ -43,7 +43,7 @@ public class StoreController {
 	public static Store chooseStores() {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
-		if(Platform.Stores.size() > 1) {
+		if(Platform.Stores.size() > 0) {
 			for (Store store : Platform.Stores) {
 				System.out.println(++i + ". " + store.name);
 			}
