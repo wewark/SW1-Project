@@ -109,21 +109,8 @@ public class Main {
 				    "2. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
-		    if (userChoice == 1) {
-			    Product product;
-		    	println("\t1. Virtual Product\n" +
-					    "\t2. Physical Product");
-		    	userChoice = sc.nextInt(); sc.nextLine();
-		    	if (userChoice == 1)
-		    		product = new VirtualProduct();
-		    	else
-		    		product = new PhysicalProduct();
-
-
-		    	// TODO: input product info
-			    ProductController.addProduct(product);
-			    // printing already done inside addProduct
-		    }
+		    if (userChoice == 1)
+		    	adminAddProduct();
 		    else return;
 	    }
     }
@@ -135,7 +122,9 @@ public class Main {
         System.out.print(string);
     }
 
-    //User Functions
+    /*
+     * User Functions
+     */
     public static void browseStoresProducts()
     {
         StoreController storeController = new StoreController(StoreController.chooseStores());
@@ -161,7 +150,9 @@ public class Main {
         }
     }
 
-    //Store Owner Functions
+    /*
+     * Store Owner Functions
+     */
     public static void browseStoresProductsWithViews()
     {
         StoreController storeController = new StoreController(StoreController.chooseStores());
@@ -186,4 +177,23 @@ public class Main {
             }
         }
     }
+
+	/*
+	 * Admin Functions
+	 */
+	static void adminAddProduct() {
+		Product product;
+		println("\t1. Virtual Product\n" +
+				"\t2. Physical Product");
+		int userChoice = sc.nextInt(); sc.nextLine();
+		if (userChoice == 1)
+			product = new VirtualProduct();
+		else
+			product = new PhysicalProduct();
+
+
+		// TODO: input product info
+		ProductController.addProduct(product);
+		// printing already done inside addProduct
+	}
 }
