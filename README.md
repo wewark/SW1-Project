@@ -14,4 +14,4 @@
 - [ ] View specific product details (Any type of users)
 - [x] Explore number of views to each product in a store (Premium store owner)
 - [x] Get the most viewed product in a store (Premium Store owner)
-- [ ] Provide voucher cards (Administrator)
+- [ ] Provide voucher cards (Administrator) 
