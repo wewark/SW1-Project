@@ -1,6 +1,4 @@
 import Controllers.UserController;
-import Models.ShoppingCart;
-import Models.User;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -11,46 +9,48 @@ public class Main {
     public static void main(String[] args) {
         int userChoice;
         while (true) {
-            print("1. Login\n" +
+            println("1. Login\n" +
                     "2. Signup\n" +
                     "3. Exit"
             );
             userChoice = sc.nextInt();
             if (userChoice == 1) {
-                login();
-                loggedInMain();
+                if(login())
+                    loggedInMain();
             } else if (userChoice == 2)
                 signUp();
             else if (userChoice == 3)
                 break;
             else
-                print("Invalid Option");
+                println("Invalid Option");
         }
     }
 
-    private static void login() {
-        while (true) {
-            System.out.print("Username: ");
-            String username = sc.nextLine();
-            System.out.print("Password: ");
-            String password = sc.nextLine();
-            if (UserController.login(username, password)) break;
-            System.out.println("Wrong username or password");
-        }
-        System.out.println("Logged in");
+    private static boolean login() {
+            print("Username: ");
+            String username = sc.next();
+            print("Password: ");
+            String password = sc.next();
+            if (UserController.login(username, password))
+                return true;
+            println("Wrong username or password");
+            return false;
     }
 
     private static void signUp() {
         while (true) {
             HashMap<String, String> userData = new HashMap<>();
-            System.out.print("Name: ");
+            print("Type: \"User\", \"StoreOwner\", \"Admin\" ? : ");
+            userData.put("type", sc.next());        sc.nextLine(); //<-- Escape \n for the next nextLine();
+            print("Name: ");
             userData.put("name", sc.nextLine());
-            System.out.print("Username: ");
-            userData.put("username", sc.nextLine());
-            System.out.print("Password: ");
+            print("Username: ");
+            userData.put("username", sc.next());     sc.nextLine(); //<-- Escape \n for the next nextLine();
+            print("Password: ");
             userData.put("passwordHash", sc.nextLine());
-            if (UserController.register(userData)) break;
-            System.out.println("user exists");
+            if (UserController.register(userData))
+                break;
+            println("User Exists, Or Type Doesn't Exist");  //Best error evahr
         }
         System.out.println("User added");
     }
@@ -59,7 +59,10 @@ public class Main {
         //CODE FOR PROGRAM
     }
 
-    public static void print(String string) {
+    public static void println(String string) {
         System.out.println(string);
+    }
+    public static void print(String string) {
+        System.out.print(string);
     }
 }
