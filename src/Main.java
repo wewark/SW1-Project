@@ -1,7 +1,4 @@
-import Controllers.ProductController;
-import Controllers.ShoppingCartController;
-import Controllers.StoreController;
-import Controllers.UserController;
+import Controllers.*;
 import Models.*;
 
 import java.util.HashMap;
@@ -132,6 +129,7 @@ public class Main {
 		    //Admin Functions goes here
 		    print(  "\t1. Add Product\n" +
                     "\t2. Add Suggested Product\n" +
+                    "\t3. Add Global Promotion\n" +
                     "\t0. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
@@ -139,6 +137,8 @@ public class Main {
 		    	adminAddProduct();
 		    else if(userChoice == 2)
                 browseSuggestedProducts();
+		    else if(userChoice == 3)
+                adminAddPromo();
 		    else return;
 	    }
     }
@@ -231,20 +231,39 @@ public class Main {
 	 * Admin Functions
 	 */
 	static void adminAddProduct() {
-		Product product;
-		println("\t1. Virtual Product\n" +
-				"\t2. Physical Product");
-		int userChoice = sc.nextInt(); sc.nextLine();
-		if (userChoice == 1)
-			product = new VirtualProduct();
-		else
-			product = new PhysicalProduct();
+        Product product;
+        println("\t1. Virtual Product\n" +
+                "\t2. Physical Product");
+        int userChoice = sc.nextInt(); sc.nextLine();
+        if (userChoice == 1)
+            product = new VirtualProduct();
+        else
+            product = new PhysicalProduct();
 
 
-		// TODO: input product info
-		ProductController.addProduct(product);
-		// printing already done inside addProduct
-	}
+        // TODO: input product info
+        ProductController.addProduct(product);
+        // printing already done inside addProduct
+    }
+
+    static void adminAddPromo() {
+        double offPercentage,  offMax;
+        int numberOfSerials;
+        System.out.println("Enter New Promotion Data: ");
+        System.out.print("off-Percentage: ");		offPercentage = sc.nextDouble();
+        System.out.print("Max-Discount: ");	        offMax = sc.nextDouble();
+        System.out.print("Number Of Serials: ");    numberOfSerials = sc.nextInt();
+        PromotionCard promotionCard = new GlobalPromotion(offPercentage, offMax);
+        if(PromotionController.CreatePromotionCard(promotionCard, numberOfSerials))
+        {
+            promotionCard.printSerials();
+        }
+        else
+        {
+            System.out.println("Creation Failed!");
+        }
+
+    }
 
 
     public static void browseSuggestedProducts()

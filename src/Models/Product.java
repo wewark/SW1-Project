@@ -44,7 +44,6 @@ public abstract class Product {
 		return Platform.SuggestedProducts.remove(product);
 	}
 
-
 	public static boolean exists(Product product) {
 		return Platform.Products.indexOf(product) != -1;
 	}
