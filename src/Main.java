@@ -91,15 +91,21 @@ public class Main {
     }
 
     private static void UserMain() {
-
+        println("-------User Dashboard-------");
+        //User Functions goes here
+        return;
     }
 
     private static void StoreOwnerMain() {
-
+        println("-------Store-Owner Dashboard-------");
+        //StoreOwner Functions goes here
+        return;
     }
 
     private static void AdminMain() {
-
+        println("-------Admin Dashboard-------");
+        //Admin Functions goes here
+        return;
     }
 
     public static void println(String string) {
