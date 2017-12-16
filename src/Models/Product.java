@@ -5,7 +5,7 @@
 //  @ Project : Untitled
 //  @ File Name : Product.java
 //  @ Date : 14/12/2017
-//  @ Author : 
+//  @ Author :
 //
 //
 
@@ -21,6 +21,7 @@ public class Product {
 	public double price;
 	//	public DateTime date;
 	public boolean accepted;
+	public int view = 0;
 
 	public Product() {
 
@@ -54,5 +55,10 @@ public class Product {
 		return name.equals(other.name) &&
 				brand.equals(other.brand) &&
 				company.equals(other.company);
+	}
+
+	public String viewDetails(){
+		view++;
+		return "Name: \t" + name + " Brand: \t " + brand +  " Company: \t " + company +  "Avg. Price: \t " + price;
 	}
 }

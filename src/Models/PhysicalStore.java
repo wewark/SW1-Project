@@ -16,7 +16,6 @@ package Models;
 import java.util.ArrayList;
 
 public class PhysicalStore extends Store {
-	public ArrayList<PhysicalStoreProduct> products;
 	public String address;
 
 	public PhysicalStore(int ID, String name, String address, StoreOwner storeOwner) {

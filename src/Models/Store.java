@@ -13,11 +13,13 @@
 package Models;
 
 
+import java.util.ArrayList;
+
 public abstract class Store {
 	public int ID;
 	public String name;
 	public StoreOwner storeOwner;
-
+	public ArrayList<StoreProduct> products = new ArrayList<>();
 	public Store(int ID, String name, StoreOwner storeOwner) {
 		this.ID = ID;
 		this.name = name;
