@@ -93,12 +93,22 @@ public class Main {
 
     private static void UserMain() {
         println("-------User Dashboard-------");
-        //User Functions goes here
+        //User Functions go here
     }
 
     private static void StoreOwnerMain() {
-        println("-------Store-Owner Dashboard-------");
-        //StoreOwner Functions goes here
+    	while (true) {
+		    println("-------Store-Owner Dashboard-------");
+		    //StoreOwner Functions go here
+		    print("1. Add store\n" +
+				    "2. Back\n");
+
+		    int userChoice = sc.nextInt();
+		    sc.nextLine();
+		    if (userChoice == 1)
+			    storeOwnerAddStore();
+		    else return;
+	    }
     }
 
     private static void AdminMain() {
@@ -176,6 +186,27 @@ public class Main {
                 }
             }
         }
+    }
+
+    static void storeOwnerAddStore() {
+    	StoreController storeController = new StoreController();
+    	Store store;
+	    println("\t1. Virtual Store\n" +
+			    "\t2. Physical Store");
+	    int userChoice = sc.nextInt(); sc.nextLine();
+
+	    println("Store Name: ");
+	    String storeName = sc.nextLine();
+	    if (userChoice == 1)
+		    store = new VirtualStore(storeName, (StoreOwner) Session.User);
+	    else {
+		    System.out.println("Address: ");
+		    String address = sc.nextLine();
+		    store = new PhysicalStore(storeName, address, (StoreOwner) Session.User);
+	    }
+
+	    StoreController.addStore(store, (StoreOwner) Session.User);
+	    println("Store added successfully");
     }
 
 	/*

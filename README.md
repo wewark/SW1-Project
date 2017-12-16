@@ -4,7 +4,7 @@
 
 - [x] Login (any type of users)
 - [x] Register (any type of users)
-- [ ] Add Store (Store owner)
+- [x] Add Store (Store owner)
 - [x] Add product to the system (Administrator)
 - [ ] Add product to store (Store owner)
 - [ ] Add brand to the system (Administrator)

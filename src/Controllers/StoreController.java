@@ -20,16 +20,23 @@ import java.util.Scanner;
 public class StoreController {
 	public Models.Store store;
 
-	public StoreController(String name, String address, StoreOwner storeOwner) {
-		store = new PhysicalStore(1 /* temp ID*/, name, address, storeOwner);
-	}
-
-	public StoreController(String name, StoreOwner storeOwner) {
-		store = new VirtualStore(1 /* temp ID*/, name, storeOwner);
-	}
-
 	public StoreController(Store store) {
 		this.store = store;
+	}
+
+	public StoreController() {
+
+	}
+
+	public static boolean addStore(Store store, StoreOwner storeOwner) {
+		if (Store.exists(store)) {
+			System.out.println("Store already exists");
+			return false;
+		}
+
+		Store.addtoDB(store);
+		storeOwner.addStore(store);
+		return true;
 	}
 
 	//Console Version Functions
