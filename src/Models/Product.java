@@ -21,6 +21,7 @@ public class Product {
 	public double price;
 //	public DateTime date;
 	public boolean accepted;
+	public int view = 0;
 	public static boolean addProduct(Product product) {
 		product.ID = String.valueOf(nextID++);		//TODO get latest ID from DB if we're saving data.
 		Platform.Products.add(product);
@@ -33,5 +34,10 @@ public class Product {
 		this.company = company;
 		this.price = price;
 		this.accepted = false;
+	}
+
+	public  String viewDetails(){
+		view++;
+		return "Name: \t" + name + " Brand: \t " + brand +  " Company: \t " + company +  "Avg. Price: \t " + price;
 	}
 }

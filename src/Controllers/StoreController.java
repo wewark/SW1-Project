@@ -9,14 +9,10 @@
 //
 //
 
-
 package Controllers;
+import Models.*;
 
-
-import Models.PhysicalStore;
-import Models.Platform;
-import Models.StoreOwner;
-import Models.VirtualStore;
+import java.util.Scanner;
 
 public class StoreController {
 	public Models.Store store;
@@ -29,23 +25,41 @@ public class StoreController {
 		store = new VirtualStore(1 /* temp ID*/, name, storeOwner);
 	}
 
-	public void viewStore() {
-
+	public StoreController(Store store) {
+		this.store = store;
 	}
 
-//	public boolean applyStore(Models.Store store) {
-//
-//	}
-//
-//	public boolean addStore(Models.Store store) {
-//
-//	}
-//
-//	public boolean addStoreProduct(Models.Product product, double price) {
-//
-//	}
-//
-//	public boolean deleteStoreProduct(Models.Product product) {
-//
-//	}
+	//Console Version Functions
+	public static Store chooseStores() {
+		Scanner sc = new Scanner(System.in);
+		int i = 0;
+		if(Platform.Stores.size() > 1) {
+			for (Store store : Platform.Stores) {
+				System.out.println(++i + ". " + store.name);
+			}
+			System.out.print("Choose Store: ");
+			while ((i = sc.nextInt()) < 1 || i > Platform.Stores.size()) //Input-Validation
+				System.out.print("Invalid Input");
+
+			return Platform.Stores.get(i - 1);
+		}
+		else return null;
+	}
+
+	public StoreProduct chooseStoreProducts() {
+		Scanner sc = new Scanner(System.in);
+		int i = 0;
+		if(store.products.size() > 0) {
+			for (StoreProduct product : store.products) {
+				System.out.println(product.detailsString());
+			}
+			System.out.print("Choose Product: ");
+			while ((i = sc.nextInt()) < 1 || i > store.products.size())
+				System.out.print("Invalid Input");
+
+			return store.products.get(i - 1);
+		}
+		else return null;
+	}
+
 }

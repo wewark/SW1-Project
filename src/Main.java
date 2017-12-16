@@ -1,7 +1,10 @@
+import Controllers.ShoppingCartController;
+import Controllers.StoreController;
 import Controllers.UserController;
 import Models.Admin;
 import Models.Session;
 import Models.StoreOwner;
+import Models.StoreProduct;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -93,6 +96,7 @@ public class Main {
     private static void UserMain() {
         println("-------User Dashboard-------");
         //User Functions goes here
+
         return;
     }
 
@@ -113,5 +117,31 @@ public class Main {
     }
     public static void print(String string) {
         System.out.print(string);
+    }
+
+    //User Functions
+    public static void browseStoresProducts()
+    {
+        StoreController storeController = new StoreController(StoreController.chooseStores());
+        if(storeController.store == null)
+            System.out.println("No Stores Available.");
+        else
+        {
+            StoreProduct storeProduct = storeController.chooseStoreProducts();
+            if(storeProduct == null) {
+                System.out.println("Store is Empty.");
+            }
+            else {
+                storeProduct.viewAndPrintDetails();
+                System.out.println("1. Yes, 2. No \n Want to Buy ? ");
+                int choice = sc.nextInt();
+                if(choice == 1) {
+                    System.out.print("Quantity : ");
+                    new ShoppingCartController(Session.User.shoppingCart)
+                            .addToCart(storeProduct, sc.nextInt());
+                    println("Added to Shopping Cart!");
+                }
+            }
+        }
     }
 }
