@@ -16,4 +16,7 @@ package Models;
 
 public class StoreOwner extends User {
 	public Store store;
+	public boolean hasStore() {
+		return store != null;
+	}
 }

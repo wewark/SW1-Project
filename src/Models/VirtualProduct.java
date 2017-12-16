@@ -8,11 +8,7 @@
 //  @ Author : 
 //
 //
-
-
-
 package Models;
-
 
 public class VirtualProduct extends Product {
 	public String serial;
