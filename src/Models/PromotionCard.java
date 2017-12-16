@@ -14,16 +14,25 @@
 package Models;
 
 
-public class PromotionCard {
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.UUID;
+
+public abstract class PromotionCard {
 //	public Date expirationDate;
 	public double offPercentage;
 	public double offMax;
-//	public ArrayList<SerialNumber> serialNumbers;
-//	public boolean verifyPromo() {
-//
-//	}
-//
-//	public boolean addPromo() {
-//
-//	}
+	public ArrayList<SerialNumber> SerialNumbers;
+	public boolean verifyPromo(String SerialNumber) {
+		for (SerialNumber Serial : SerialNumbers ) {
+			if(Objects.equals(Serial.serial, SerialNumber) && !Serial.used)
+				return true;
+		}
+		return false;
+	}
+
+	public PromotionCard(double offPercentage, double offMax) {
+		this.offPercentage = offPercentage;
+		this.offMax = offMax;
+	}
 }

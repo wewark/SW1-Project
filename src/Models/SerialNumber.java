@@ -17,4 +17,9 @@ package Models;
 public class SerialNumber {
 	public String serial;
 	public boolean used;
+
+	public SerialNumber(String serial) {
+		this.serial = serial;
+		used = false;
+	}
 }
