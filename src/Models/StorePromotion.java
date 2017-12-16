@@ -11,16 +11,5 @@ public class StorePromotion extends PromotionCard {
 		this.store = store;
 	}
 
-	public boolean usePromo(String SerialNumber, Store store) {
-		if(store != this.store)
-			return false;
-		for (SerialNumber Serial : SerialNumbers ) {
-			if(Objects.equals(Serial.serial, SerialNumber) && !Serial.used ) {
-				Serial.used = true;
-				return true;
-			}
-		}
-		return false;
-	}
 }
 

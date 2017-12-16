@@ -18,15 +18,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class GlobalPromotion extends PromotionCard {
-    public boolean usePromo(String SerialNumber) {
-        for (SerialNumber Serial : SerialNumbers ) {
-            if(Objects.equals(Serial.serial, SerialNumber) && !Serial.used) {
-                Serial.used = true;
-                return true;
-            }
-        }
-        return false;
-    }
 
     public GlobalPromotion(double offPercentage, double offMax) {
         super(offPercentage, offMax);

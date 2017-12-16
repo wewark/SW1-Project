@@ -40,23 +40,7 @@ public class StoreController {
 	}
 
 	//Console Version Functions
-	public static Store chooseStores() {
-		Scanner sc = new Scanner(System.in);
-		int i = 0;
-		if(Platform.Stores.size() > 0) {
-			for (Store store : Platform.Stores) {
-				System.out.println(++i + ". " + store.name);
-			}
-			System.out.print("Choose Store: ");
-			while ((i = sc.nextInt()) < 1 || i > Platform.Stores.size()) //Input-Validation
-				System.out.print("Invalid Input");
-
-			return Platform.Stores.get(i - 1);
-		}
-		else return null;
-	}
-
-	public StoreProduct chooseStoreProducts() {
+		public StoreProduct chooseStoreProducts() {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
 		if(store.products.size() > 0) {

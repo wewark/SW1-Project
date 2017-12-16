@@ -14,6 +14,7 @@ package Models;
 
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Store {
 	public int ID;
@@ -38,4 +39,20 @@ public abstract class Store {
 	}
 
 	public abstract boolean addProduct(Product product, float Price);
+
+	public static Store chooseStores() {
+		Scanner sc = new Scanner(System.in);
+		int i = 0;
+		if(Platform.Stores.size() > 0) {
+			for (Store store : Platform.Stores) {
+				System.out.println(++i + ". " + store.name);
+			}
+			System.out.print("Choose Store: ");
+			while ((i = sc.nextInt()) < 1 || i > Platform.Stores.size()) //Input-Validation
+				System.out.print("Invalid Input");
+
+			return Platform.Stores.get(i - 1);
+		}
+		else return null;
+	}
 }

@@ -33,10 +33,31 @@ public abstract class PromotionCard {
 			SerialNumbers.add(new SerialNumber(UUID.randomUUID().toString()));
 		}
 	}
+
 	public static boolean addPromoCard(PromotionCard promotionCard)
 	{
 		Platform.PromoCards.add(promotionCard);
 		return true;
+	}
+
+	public boolean usePromo(String SerialNumber) {
+		for (SerialNumber Serial : SerialNumbers ) {
+			if(Objects.equals(Serial.serial, SerialNumber) && !Serial.used ) {
+				Serial.used = true;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static PromotionCard getPromoBySerial(String GivenSerial){
+		for (PromotionCard promo : Platform.PromoCards ) {
+			for (SerialNumber serialNumber: promo.SerialNumbers ) {
+				if(Objects.equals(serialNumber.serial, GivenSerial))
+					return promo;
+			}
+		}
+		return null;
 	}
 
 	//Console Function

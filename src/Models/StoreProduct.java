@@ -18,6 +18,7 @@ public abstract class StoreProduct {
 	public double price;
 	public Product product;
 	public int view = 0;
+	public Store store;
 	public StoreProduct(float price) {
 		this.price = price;
 	}

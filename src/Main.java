@@ -92,6 +92,7 @@ public class Main {
         //User Functions go here
         print(  "\t1. Browse Store Products\n" +
                 "\t2. Suggest Product\n" +
+                "\t3. Checkout\n" +
                 "\t0. Back\n");
 
         int userChoice = sc.nextInt();
@@ -100,6 +101,8 @@ public class Main {
             browseStoresProducts();
         else if(userChoice == 2)
             suggestProduct();
+        else if(userChoice == 3)
+            checkout();
         else return;
     }
 
@@ -159,7 +162,7 @@ public class Main {
      */
     public static void browseStoresProducts()
     {
-        StoreController storeController = new StoreController(StoreController.chooseStores());
+        StoreController storeController = new StoreController(Store.chooseStores());
         if(storeController.store == null)
             System.out.println("No Stores Available.");
         else
@@ -187,7 +190,7 @@ public class Main {
      */
     public static void browseStoresProductsWithViews()
     {
-        StoreController storeController = new StoreController(StoreController.chooseStores());
+        StoreController storeController = new StoreController(Store.chooseStores());
         if(storeController.store == null)
             System.out.println("No Stores Available.");
         else
@@ -318,5 +321,52 @@ public class Main {
         if (ProductController.addSuggestedProduct(product))
             println("Added to Suggested, Admins will review suggestions soon!");
 
+    }
+
+    public static void checkout(){
+        ShoppingCart shoppingCart = Session.User.shoppingCart;
+        shoppingCart.printOrders();
+        println("Total: " + shoppingCart.calculateSum());
+
+        println("Enter Promotion ? ");
+        println("\t1. Yes\n" +
+                "\t0. No");
+
+        int userChoice = sc.nextInt();
+        if (userChoice == 1) {
+            addPromotion(shoppingCart);
+        }
+
+        println("Enter Pay Method : ");
+        println("\t1. Cash\n" +
+                "\t2. Credit");
+        userChoice = sc.nextInt();
+        if (userChoice == 1) {
+            println("Cash Payment Accepted, You will be charged upon orders delivery.");
+        }
+        else if (userChoice == 2) {
+            println("Credit Payment Accepted, You will be charged in the next 15 minutes.");
+        }
+
+        new ShoppingCartController(shoppingCart).clearCart();
+    }
+
+    public static void addPromotion(ShoppingCart shoppingCart)
+    {
+        print("Enter Serial : ");
+        String Serial = sc.next();
+        PromotionCard promotionCard = PromotionCard.getPromoBySerial(Serial);
+        if(promotionCard != null)
+        {
+            if(promotionCard.usePromo(Serial))
+            {
+                println("Total:\t" + shoppingCart.calculateSum());
+                println("After Discount:\t" + shoppingCart.calculateSumPromotion(promotionCard));
+            }
+            else
+                println("SerialNumber Already Used!");
+
+        }
+        else println("SerialNumber Not Found!");
     }
 }
