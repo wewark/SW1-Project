@@ -1,8 +1,10 @@
 import Controllers.UserController;
 import Models.Admin;
+import Models.Platform;
 import Models.Session;
 import Models.StoreOwner;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -10,6 +12,10 @@ public class Main {
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        //LOAD DB
+        Platform.Initialize();
+
+        //START PROGRAM
         int userChoice;
         while (true) {
             println("1. Login\n" +
@@ -27,6 +33,15 @@ public class Main {
             else
                 println("Invalid Option");
         }
+
+
+        //SAVE TO DB
+        try {
+            Platform.SaveDB();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static boolean login() {
