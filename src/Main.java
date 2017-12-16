@@ -160,4 +160,30 @@ public class Main {
             }
         }
     }
+
+    //Store Owner Functions
+    public static void browseStoresProductsWithViews()
+    {
+        StoreController storeController = new StoreController(StoreController.chooseStores());
+        if(storeController.store == null)
+            System.out.println("No Stores Available.");
+        else
+        {
+            StoreProduct storeProduct = storeController.chooseStoreProductsViews();
+            if(storeProduct == null) {
+                System.out.println("Store is Empty.");
+            }
+            else {
+                storeProduct.viewAndPrintDetails();
+                System.out.println("1. Yes, 2. No \n Want to Buy ? ");
+                int choice = sc.nextInt();
+                if(choice == 1) {
+                    System.out.print("Quantity : ");
+                    new ShoppingCartController(Session.User.shoppingCart)
+                            .addToCart(storeProduct, sc.nextInt());
+                    println("Added to Shopping Cart!");
+                }
+            }
+        }
+    }
 }
