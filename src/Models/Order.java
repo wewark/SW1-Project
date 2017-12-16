@@ -16,7 +16,11 @@ package Models;
 
 public class Order {
 	public String orderID;
-	public Product product;
-	public Store store;
+	public StoreProduct product;
 	public int quantity;
+
+	public Order(StoreProduct product, int quantity) {
+		this.product = product;
+		this.quantity = quantity;
+	}
 }

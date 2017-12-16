@@ -14,10 +14,15 @@
 package Models;
 
 
+import java.util.ArrayList;
+
 public class ShoppingCart {
 	public String userID;
-//	public ArrayList<Order> orders;
-//	public boolean addOrder(Order order) {
-//
-//	}
+	public ArrayList<Order> orders;
+	public boolean addOrder(StoreProduct product, int Quantity) {
+		orders.add(new Order(product, Quantity));
+		return true;
+	}
+
+	//TODO Checkout Implementation
 }
