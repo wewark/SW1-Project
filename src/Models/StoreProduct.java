@@ -16,4 +16,8 @@ package Models;
 
 public class StoreProduct {
 	public double price;
+
+	public StoreProduct(float price) {
+		this.price = price;
+	}
 }

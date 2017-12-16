@@ -15,4 +15,9 @@ package Models;
 
 
 public class VirtualStoreProduct extends StoreProduct {
+    public VirtualProduct product;
+    public VirtualStoreProduct(float price, VirtualProduct product) {
+        super(price);
+        this.product = product;
+    }
 }

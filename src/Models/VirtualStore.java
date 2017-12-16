@@ -14,9 +14,17 @@
 package Models;
 
 
+import java.util.ArrayList;
+
 public class VirtualStore extends Store {
-//	public ArrayList<VirtualStoreProduct> products;
-	public void addProduct(VirtualProduct product, double price) {
-	
+	public ArrayList<VirtualStoreProduct> products;
+
+	@Override
+	public boolean addProduct(Product product, float Price) {
+		if(product instanceof VirtualProduct) {
+			products.add(new VirtualStoreProduct(Price, (VirtualProduct) product));
+			return true;
+		}
+		else return false;
 	}
 }

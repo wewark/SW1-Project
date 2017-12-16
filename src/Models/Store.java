@@ -14,11 +14,9 @@
 package Models;
 
 
-public class Store {
+public abstract class Store {
 	public String ID;
 	public String name;
 	public StoreOwner storeOwner;
-//	public boolean addStore(Store store) {
-//
-//	}
+	public abstract boolean addProduct(Product product, float Price);
 }

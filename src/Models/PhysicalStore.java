@@ -14,10 +14,15 @@
 package Models;
 
 
-public class PhysicalStore extends Store {
-//	public ArrayList<PhysicalStoreProduct> products;
-	public String address;
-//	public boolean addProduct(Product product, double price) {
-//
-//	}
-}
+import java.util.ArrayList;
+
+	public class PhysicalStore extends Store {
+		public ArrayList<PhysicalStoreProduct> products;
+		public String address;
+
+		@Override
+		public boolean addProduct(Product product, float Price) {
+			products.add(new PhysicalStoreProduct(Price, product));
+			return false;
+		}
+	}
