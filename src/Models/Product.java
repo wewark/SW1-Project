@@ -9,8 +9,6 @@
 //
 //
 
-
-
 package Models;
 
 
@@ -18,8 +16,8 @@ public class Product {
 	public static int nextID = 0;
 	public String ID;
 	public String name;
-	public Brand brand;
-	public Company company;
+	public String brand;
+	public String company;
 	public double price;
 //	public DateTime date;
 	public boolean accepted;
@@ -28,12 +26,12 @@ public class Product {
 		Platform.products.add(product);
 		return true;
 	}
-//
-//	public boolean updateProduct() {
-//
-//	}
-//
-//	public boolean deleteProduct() {
-//
-//	}
+
+	public Product(String name, String brand, String company, double price) {
+		this.name = name;
+		this.brand = brand;
+		this.company = company;
+		this.price = price;
+		this.accepted = false;
+	}
 }
