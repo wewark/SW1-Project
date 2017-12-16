@@ -63,18 +63,43 @@ public class Main {
         if(!Session.IsLoggedIn())
             return;
         ////////////////////
-        if(Session.User instanceof Admin)
+
+        int userChoice;
+        println("Welcome, " + Session.User.name + "!.");
+        while (true)
         {
-            //ADMINS MAIN GOES HERE
+                println("1. User Dashboard");
+            if(Session.User instanceof Admin)
+                println("2. Admin Dashboard");
+            else if(Session.User instanceof StoreOwner)
+                println("2. Store-Owner Dashboard");
+            println("0. Logout");
+            print("Enter Choice: ");
+            userChoice = sc.nextInt();
+            if(userChoice == 1)
+                UserMain();
+            else if(userChoice == 2 && Session.User instanceof Admin)
+                AdminMain();
+            else if(userChoice == 2 && Session.User instanceof StoreOwner)
+                StoreOwnerMain();
+            else if(userChoice == 0) {
+                UserController.logout();
+                break;
+            }
+            else println("Invalid Option");
         }
-        if(Session.User instanceof StoreOwner)
-        {
-            //STOREOWNER MAIN GOES HERE
-        }
-        else
-        {
-            //NORMAL USER MAIN GOES HERE
-        }
+    }
+
+    private static void UserMain() {
+
+    }
+
+    private static void StoreOwnerMain() {
+
+    }
+
+    private static void AdminMain() {
+
     }
 
     public static void println(String string) {
