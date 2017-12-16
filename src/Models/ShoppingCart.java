@@ -14,9 +14,10 @@
 package Models;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
 	public String userID;
 	public ArrayList<Order> orders;
 	public boolean addOrder(StoreProduct product, int Quantity) {

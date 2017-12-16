@@ -12,13 +12,16 @@
 package Models;
 
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable{
 	public static int nextID = 0;
 	public String ID;
 	public String name;
 	public String brand;
 	public String company;
 	public double price;
+	public int views = 0;
 //	public DateTime date;
 	public boolean accepted;
 	public static boolean addProduct(Product product) {

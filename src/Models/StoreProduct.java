@@ -14,7 +14,9 @@
 package Models;
 
 
-public class StoreProduct {
+import java.io.Serializable;
+
+public class StoreProduct implements Serializable {
 	public double price;
 
 	public StoreProduct(float price) {

@@ -14,11 +14,12 @@
 package Models;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
-public abstract class PromotionCard {
+public abstract class PromotionCard implements Serializable{
 //	public Date expirationDate;
 	public double offPercentage;
 	public double offMax;

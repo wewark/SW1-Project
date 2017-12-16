@@ -1,8 +1,9 @@
 package Models;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class User {
+public class User implements Serializable {
 	public static int nextID = 0;
 	public int ID;
 	public String name;

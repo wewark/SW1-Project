@@ -14,7 +14,9 @@
 package Models;
 
 
-public abstract class Store {
+import java.io.Serializable;
+
+public abstract class Store implements Serializable{
 	public String ID;
 	public String name;
 	public StoreOwner storeOwner;

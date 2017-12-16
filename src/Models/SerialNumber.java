@@ -14,7 +14,9 @@
 package Models;
 
 
-public class SerialNumber {
+import java.io.Serializable;
+
+public class SerialNumber implements Serializable {
 	public String serial;
 	public boolean used;
 
