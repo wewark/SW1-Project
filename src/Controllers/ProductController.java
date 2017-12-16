@@ -33,6 +33,10 @@ public class ProductController {
 		return true;
 	}
 
+	public static Product getProduct(String name) {
+		return Product.getProduct(name);
+	}
+
 	public void viewProduct() {
 
 	}

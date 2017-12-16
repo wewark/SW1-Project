@@ -61,4 +61,11 @@ public class Product {
 		view++;
 		return "Name: \t" + name + " Brand: \t " + brand +  " Company: \t " + company +  "Avg. Price: \t " + price;
 	}
+
+	public static Product getProduct(String name) {
+		for (Product product : Platform.Products)
+			if (product.name.equals(name))
+				return product;
+		return null;
+	}
 }

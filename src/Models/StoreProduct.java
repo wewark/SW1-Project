@@ -10,7 +10,6 @@
 //
 
 
-
 package Models;
 
 
@@ -18,24 +17,28 @@ public abstract class StoreProduct {
 	public double price;
 	public Product product;
 	public int view = 0;
-	public StoreProduct(float price) {
+
+	public StoreProduct(Product product, float price) {
+		this.product = product;
 		this.price = price;
 	}
-	public  String detailsString(){
-		return "Name: \t" + product.name +  "Price: \t " + price;
+
+	public String detailsString() {
+		return "Name: \t" + product.name + "Price: \t " + price;
 	}
-	public  String viewDetails(){
+
+	public String viewDetails() {
 		product.view++;
 		view++;
-		return "Name: \t" + product.name + " Brand: \t " + product.brand +  " Company: \t " + product.company +  "Price: \t " + price;
+		return "Name: \t" + product.name + " Brand: \t " + product.brand + " Company: \t " + product.company + "Price: \t " + price;
 	}
 
 	//Console Function
-	public void viewAndPrintDetails(){
+	public void viewAndPrintDetails() {
 		System.out.println(viewDetails());
 	}
 
-	public int getView() {	//for comparator
+	public int getView() {    //for comparator
 		return view;
 	}
 }

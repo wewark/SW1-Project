@@ -13,8 +13,6 @@
 package Models;
 
 
-import java.util.ArrayList;
-
 public class PhysicalStore extends Store {
 	public String address;
 
@@ -25,7 +23,8 @@ public class PhysicalStore extends Store {
 
 	@Override
 	public boolean addProduct(Product product, float Price) {
-		products.add(new PhysicalStoreProduct(Price, product));
-		return false;
+		if (!(product instanceof PhysicalProduct)) return false;
+		products.add(new PhysicalStoreProduct(product, Price));
+		return true;
 	}
 }
