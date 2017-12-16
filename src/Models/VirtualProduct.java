@@ -16,4 +16,9 @@ package Models;
 
 public class VirtualProduct extends Product {
 	public String serial;
+
+	public VirtualProduct(String name, String brand, String company, double price, String serial) {
+		super(name, brand, company, price);
+		this.serial = serial;
+	}
 }

@@ -16,5 +16,9 @@ package Models;
 
 public class PhysiclaProduct extends Product {
 	public double weight;
-//	public Dimension dimensions;
+
+	public PhysiclaProduct(String name, String brand, String company, double price, double weight) {
+		super(name, brand, company, price);
+		this.weight = weight;
+	}
 }
