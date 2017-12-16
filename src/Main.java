@@ -1,4 +1,7 @@
 import Controllers.UserController;
+import Models.Admin;
+import Models.Session;
+import Models.StoreOwner;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -57,6 +60,21 @@ public class Main {
 
     private static void loggedInMain() {
         //CODE FOR PROGRAM
+        if(!Session.IsLoggedIn())
+            return;
+        ////////////////////
+        if(Session.User instanceof Admin)
+        {
+            //ADMINS MAIN GOES HERE
+        }
+        if(Session.User instanceof StoreOwner)
+        {
+            //STOREOWNER MAIN GOES HERE
+        }
+        else
+        {
+            //NORMAL USER MAIN GOES HERE
+        }
     }
 
     public static void println(String string) {
