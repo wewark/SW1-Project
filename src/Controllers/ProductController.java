@@ -21,18 +21,16 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ProductController {
-    public static boolean addProduct(Product product) {
+    public static void addProduct(Product product) {
         if (Product.exists(product)) {
             System.out.println("Product already exists");
-            return false;
+            return;
         }
 
         Product.addToDB(product);
-        return true;
     }
 
     public static boolean addSuggestedProduct(Product product) {
-
         if (Product.existsSuggested(product)) {
             System.out.println("Product already exists");
             return false;
@@ -46,12 +44,10 @@ public class ProductController {
         return Product.getProduct(name);
     }
 
-    public static boolean deleteSuggestedProduct(Product product) {
-
+    public static void deleteSuggestedProduct(Product product) {
         if (Product.existsSuggested(product)) {
-            return Product.deleteSuggestedDB(product);
+            Product.deleteSuggestedDB(product);
         }
-        return false;
     }
 
 	public void viewProduct() {
