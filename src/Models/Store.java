@@ -43,10 +43,10 @@ public abstract class Store implements Serializable{
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null ||
-				!Product.class.isAssignableFrom(obj.getClass()))
+				!Store.class.isAssignableFrom(obj.getClass()))
 			return false;
 
-		Product other = (Product) obj;
+		Store other = (Store) obj;
 		// Stores are compared using their names only
 		// So all store names are unique
 		return name.equals(other.name);
