@@ -126,7 +126,7 @@ public class Main {
         while (true) {
             println("-------Store-Owner Dashboard-------");
             //StoreOwner Functions go here
-            print("\t1. Add store\n" +
+            print(  "\t1. Suggest Store\n" +
                     "\t2. Browse Store's Products with Views\n" +
                     "\t3. Suggest Product\n" +
                     "\t4. Create Promotion To Store\n" +
@@ -136,7 +136,7 @@ public class Main {
             int userChoice = sc.nextInt();
             sc.nextLine();
             if (userChoice == 1)
-                storeOwnerAddStore();
+                storeOwnerSuggestStore();
             else if (userChoice == 2)
                 browseStoresProductsWithViews();
             else if (userChoice == 3)
@@ -155,7 +155,8 @@ public class Main {
             //Admin Functions goes here
             print("\t1. Add Product\n" +
                     "\t2. Add Suggested Product\n" +
-                    "\t3. Add Global Promotion\n" +
+                    "\t3. Add Suggested Store\n" +
+                    "\t4. Add Global Promotion\n" +
                     "\t0. Back\n");
 
             int userChoice = sc.nextInt();
@@ -165,6 +166,8 @@ public class Main {
             else if (userChoice == 2)
                 browseSuggestedProducts();
             else if (userChoice == 3)
+                browseSuggestedStores();
+            else if (userChoice == 4)
                 adminAddPromo();
             else return;
         }
@@ -191,7 +194,7 @@ public class Main {
                 System.out.println("Store is Empty.");
             } else {
                 storeProduct.viewAndPrintDetails();
-                System.out.println("1. Yes, 2. No \n Want to Buy ? ");
+                System.out.println("1. Yes, 2. No \n Want to Add to Shopping Cart ? ");
                 int choice = sc.nextInt();
                 if (choice == 1) {
                     System.out.print("Quantity : ");
@@ -228,8 +231,7 @@ public class Main {
         }
     }
 
-    static void storeOwnerAddStore() {
-        StoreController storeController = new StoreController();
+    static void storeOwnerSuggestStore() {
         Store store;
         println("\t1. Virtual Store\n" +
                 "\t2. Physical Store");
@@ -246,31 +248,27 @@ public class Main {
             store = new PhysicalStore(storeName, address, (StoreOwner) Session.User);
         }
 
-        StoreController.addStore(store, (StoreOwner) Session.User);
-        println("Store added successfully");
+        StoreController.suggestStore(store, (StoreOwner) Session.User);
+        println("Added to Suggested, Admins will review suggestions soon!");
     }
 
     private static void storeOwnerAddProductToStore() {
-        String productName, storeName;
         float price;
-        print("Store Name: ");
-        storeName = sc.nextLine();
-        print("Product Name: ");
-        productName = sc.nextLine();
+        Store store = ((StoreOwner)Session.User).chooseStores();
+        if(store == null){
+            println("You Don't Have Any Stores");
+            return;
+        }
+        //Select Product based on store type.
+        Product product = ProductController.ChooseProduct(store);
+        if(product == null){
+            println("No Available Products, Suggest to Admin from your Dashboard.");
+            return;
+        }
         print("Price of sale: ");
         price = sc.nextFloat();
-        sc.nextLine();
-
-        Product product = ProductController.getProduct(productName);
-        Store store = ((StoreOwner) Session.User).getStore(storeName);
-
-        if (product == null)
-            println("Product not found!");
-        else if (store == null)
-            println("Store not found!");
-        else if (!store.addProduct(product, price))
-            println("Can't add this product to this store!\n" +
-                    "store is virtual while the product is physical or vice versa");
+        store.addProduct(product, price);
+        println("Added !");
     }
 
     /*
@@ -346,7 +344,25 @@ public class Main {
         }
     }
 
-    //User & Store Owner Functions
+    public static void browseSuggestedStores() {
+        Store suggestedStore = Store.chooseSuggestedStores();
+        if (suggestedStore == null) {
+            System.out.println("No Suggested Stores.");
+        } else {
+            System.out.println(
+                    "\t1. Yes\n" +
+                    "\t2. No \n" +
+                    "\tWant to Add ? ");
+            int choice = sc.nextInt();
+            if (choice == 1) {
+                StoreController.addStore(suggestedStore, suggestedStore.storeOwner);
+                StoreController.deleteSuggestedStore(suggestedStore);
+                println("Added to Stores!");
+            }
+        }
+    }
+
+    //User Functions
     public static void suggestProduct() {
         Product product;
         println("\t1. Virtual Product\n" +

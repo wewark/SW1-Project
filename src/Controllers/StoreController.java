@@ -42,13 +42,27 @@ public class StoreController {
 		return true;
 	}
 
+	public static boolean suggestStore(Store store, StoreOwner storeOwner) {
+		if (Store.exists(store)) {
+			System.out.println("Store already exists");
+			return false;
+		}
+
+		Store.addtoSuggestedDB(store);
+		return true;
+	}
+
+	public static boolean deleteSuggestedStore(Store store) {
+			return Store.deleteSuggestedDB(store);
+	}
+
 	//Console Version Functions
 	public StoreProduct chooseStoreProducts() {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
 		if (store.products.size() > 0) {
 			for (StoreProduct product : store.products) {
-				System.out.println(product.detailsString());
+				System.out.println(++i + ".\t " + product.detailsString());
 			}
 			System.out.print("Choose Product: ");
 			while ((i = sc.nextInt()) < 1 || i > store.products.size())
@@ -65,13 +79,13 @@ public class StoreController {
 		List<StoreProduct> sortedProducts = new ArrayList<>(store.products);
 		sortedProducts.sort(Comparator.comparingDouble(StoreProduct::getView).reversed());    //TODO Test Sorting
 		if (sortedProducts.size() > 0) {
-			for (StoreProduct product : store.products) {
+			for (StoreProduct product : sortedProducts) {
 				System.out.println(++i + ".\t" + product.view + " Views | " + product.detailsString());
 			}
 			System.out.print("Choose Product: ");
-			while ((i = sc.nextInt()) < 1 || i > store.products.size())
+			while ((i = sc.nextInt()) < 1 || i > sortedProducts.size())
 				System.out.print("Invalid Input");
-			return store.products.get(i - 1);
+			return sortedProducts.get(i - 1);
 		} else return null;
 	}
 
