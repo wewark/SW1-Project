@@ -34,6 +34,12 @@ public abstract class Store implements Serializable{
 		return true;
 	}
 
+	public static boolean addtoSuggestedDB(Store store) {
+		store.ID = 1;        //TODO get latest ID from DB if we're saving data.
+		Platform.SuggestedStores.add(store);
+		return true;
+	}
+
 	public static boolean exists(Store store) {
 		return Platform.Stores.indexOf(store) != -1;
 	}
@@ -52,6 +58,11 @@ public abstract class Store implements Serializable{
 		return name.equals(other.name);
 	}
 
+	public static boolean deleteSuggestedDB(Store store) {
+		return Platform.SuggestedStores.remove(store);
+	}
+
+
 	public static Store chooseStores() {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
@@ -64,6 +75,21 @@ public abstract class Store implements Serializable{
 				System.out.print("Invalid Input");
 
 			return Platform.Stores.get(i - 1);
+		} else return null;
+	}
+
+	public static Store chooseSuggestedStores() {
+		Scanner sc = new Scanner(System.in);
+		int i = 0;
+		if (Platform.SuggestedStores.size() > 0) {
+			for (Store store : Platform.SuggestedStores) {
+				System.out.println(++i + ". " + store.name);
+			}
+			System.out.print("Choose Store: ");
+			while ((i = sc.nextInt()) < 1 || i > Platform.SuggestedStores.size()) //Input-Validation
+				System.out.print("Invalid Input");
+
+			return Platform.SuggestedStores.get(i - 1);
 		} else return null;
 	}
 }

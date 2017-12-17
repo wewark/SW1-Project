@@ -42,6 +42,20 @@ public class StoreController {
 		return true;
 	}
 
+	public static boolean suggestStore(Store store, StoreOwner storeOwner) {
+		if (Store.exists(store)) {
+			System.out.println("Store already exists");
+			return false;
+		}
+
+		Store.addtoSuggestedDB(store);
+		return true;
+	}
+
+	public static boolean deleteSuggestedStore(Store store) {
+			return Store.deleteSuggestedDB(store);
+	}
+
 	//Console Version Functions
 	public StoreProduct chooseStoreProducts() {
 		Scanner sc = new Scanner(System.in);

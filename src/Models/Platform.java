@@ -8,7 +8,7 @@ public class Platform {
 	public static ArrayList<User> Users = new ArrayList<>();
 	public static ArrayList<Product> Products = new ArrayList<>();
 	public static ArrayList<Product> SuggestedProducts = new ArrayList<>();
-	public static ArrayList<Store> AppliedStores = new ArrayList<>();
+	public static ArrayList<Store> SuggestedStores = new ArrayList<>();
 	public static ArrayList<PromotionCard> PromoCards = new ArrayList<>();
 	public static ArrayList<Store> Stores = new ArrayList<>();
 
@@ -23,7 +23,7 @@ public class Platform {
 			Users = (ArrayList<User>) input.readObject();
 			Products = (ArrayList<Product>) input.readObject();
 			SuggestedProducts = (ArrayList<Product>) input.readObject();
-			AppliedStores = (ArrayList<Store>) input.readObject();
+			SuggestedStores = (ArrayList<Store>) input.readObject();
 			PromoCards = (ArrayList<PromotionCard>) input.readObject();
 			Stores = (ArrayList<Store>) input.readObject();
 			input.close();
@@ -35,7 +35,7 @@ public class Platform {
 			Users = new ArrayList<>();
 			Products = new ArrayList<>();
 			SuggestedProducts = new ArrayList<>();
-			AppliedStores = new ArrayList<>();
+			SuggestedStores = new ArrayList<>();
 			PromoCards = new ArrayList<>();
 		}
 		return;
@@ -52,7 +52,7 @@ public class Platform {
 		objectOutputStream.writeObject(Users);
 		objectOutputStream.writeObject(Products);
 		objectOutputStream.writeObject(SuggestedProducts);
-		objectOutputStream.writeObject(AppliedStores);
+		objectOutputStream.writeObject(SuggestedStores);
 		objectOutputStream.writeObject(PromoCards);
 		objectOutputStream.writeObject(Stores);
 		objectOutputStream.close();
