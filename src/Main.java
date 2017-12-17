@@ -191,7 +191,7 @@ public class Main {
                 System.out.println("Store is Empty.");
             } else {
                 storeProduct.viewAndPrintDetails();
-                System.out.println("1. Yes, 2. No \n Want to Buy ? ");
+                System.out.println("1. Yes, 2. No \n Want to Add to Shopping Cart ? ");
                 int choice = sc.nextInt();
                 if (choice == 1) {
                     System.out.print("Quantity : ");
@@ -229,7 +229,6 @@ public class Main {
     }
 
     static void storeOwnerAddStore() {
-        StoreController storeController = new StoreController();
         Store store;
         println("\t1. Virtual Store\n" +
                 "\t2. Physical Store");
@@ -251,26 +250,22 @@ public class Main {
     }
 
     private static void storeOwnerAddProductToStore() {
-        String productName, storeName;
         float price;
-        print("Store Name: ");
-        storeName = sc.nextLine();
-        print("Product Name: ");
-        productName = sc.nextLine();
+        Store store = ((StoreOwner)Session.User).chooseStores();
+        if(store == null){
+            println("You Don't Have Any Stores");
+            return;
+        }
+        //Select Product based on store type.
+        Product product = ProductController.ChooseProduct(store);
+        if(product == null){
+            println("No Available Products, Suggest to Admin from your Dashboard.");
+            return;
+        }
         print("Price of sale: ");
         price = sc.nextFloat();
-        sc.nextLine();
-
-        Product product = ProductController.getProduct(productName);
-        Store store = ((StoreOwner) Session.User).getStore(storeName);
-
-        if (product == null)
-            println("Product not found!");
-        else if (store == null)
-            println("Store not found!");
-        else if (!store.addProduct(product, price))
-            println("Can't add this product to this store!\n" +
-                    "store is virtual while the product is physical or vice versa");
+        store.addProduct(product, price);
+        println("Added !");
     }
 
     /*

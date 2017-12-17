@@ -48,7 +48,7 @@ public class StoreController {
 		int i = 0;
 		if (store.products.size() > 0) {
 			for (StoreProduct product : store.products) {
-				System.out.println(product.detailsString());
+				System.out.println(++i + ".\t " + product.detailsString());
 			}
 			System.out.print("Choose Product: ");
 			while ((i = sc.nextInt()) < 1 || i > store.products.size())

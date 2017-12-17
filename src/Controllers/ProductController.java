@@ -13,10 +13,12 @@
 package Controllers;
 
 
-import Models.Platform;
-import Models.Product;
+import Models.*;
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ProductController {
     public static boolean addProduct(Product product) {
@@ -71,6 +73,51 @@ public class ProductController {
 
             return Platform.SuggestedProducts.get(i - 1);
         }
+        return null;
+    }
+
+    public static Product ChooseProduct() {
+        Scanner sc = new Scanner(System.in);
+        int i = 0;
+        if (Platform.Products.size() > 0) {
+            for (Product product : Platform.Products) {
+                System.out.println(++i + ". " + product.viewDetails());
+            }
+            System.out.print("Choose Product: ");
+            while ((i = sc.nextInt()) < 1 || i > Platform.Products.size()) //Input-Validation
+                System.out.print("Invalid Input");
+
+            return Platform.Products.get(i - 1);
+        }
+        return null;
+    }
+
+    public static Product ChooseProduct(Store store) {
+
+        List<Product> filteredProduct;
+
+        if(store instanceof VirtualStore)
+        {
+            Stream<Product> filteredStream = Platform.Products.stream().filter(p -> p instanceof VirtualProduct);
+            filteredProduct = filteredStream.collect(Collectors.toList());
+            System.out.println("*Showing only Virtual Products.");
+        }
+        else
+            filteredProduct = Platform.Products;
+
+        int i = 0;
+        if (filteredProduct.size() > 0) {
+            for (Product product : filteredProduct) {
+                System.out.println(++i + ". " + product.viewDetails());
+            }
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Choose Product: ");
+            while ((i = sc.nextInt()) < 1 || i > filteredProduct.size()) //Input-Validation
+                System.out.print("Invalid Input");
+
+            return Platform.Products.get(i - 1);
+        }
+
         return null;
     }
 
