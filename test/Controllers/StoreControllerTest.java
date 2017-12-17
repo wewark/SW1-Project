@@ -5,6 +5,7 @@ import Models.Platform;
 import Models.Store;
 import Models.StoreOwner;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,6 +22,11 @@ public class StoreControllerTest {
 			testStoreOwner
 	);
 
+	@BeforeClass
+	public void beforeClass() {
+		System.out.println("Testing Store Controller:");
+	}
+
 	@BeforeMethod
 	public void setUp() throws Exception {
 		Platform.Stores.clear();
@@ -28,6 +34,7 @@ public class StoreControllerTest {
 
 	@Test
 	public void testAddStore() throws Exception {
+		System.out.println("Testing add store...");
 		StoreController.addStore(testStore, testStoreOwner);
 		assertNotEquals(Platform.Stores.indexOf(testStore), -1);
 	}

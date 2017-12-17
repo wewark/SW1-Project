@@ -22,12 +22,12 @@ public class ShoppingCartControllerTest {
 
 	@BeforeClass
 	public void beforeClass() {
-		System.out.println("Testing ShoppinCartController:");
+		System.out.println("Testing ShoppingCart Controller:");
 	}
 
 	@Test
 	public void testAddToCart() throws Exception {
-		System.out.println("\tTesting add to cart...");
+		System.out.println("Testing add to cart...");
 		ShoppingCartController testShoppingCartController = new ShoppingCartController(
 				new ShoppingCart()
 		);
@@ -41,7 +41,7 @@ public class ShoppingCartControllerTest {
 
 	@Test
 	public void testClearCart() throws Exception {
-		System.out.println("\tTesting clear cart...");
+		System.out.println("Testing clear cart...");
 		ShoppingCartController testShoppingCartController = new ShoppingCartController(
 				new ShoppingCart()
 		);
