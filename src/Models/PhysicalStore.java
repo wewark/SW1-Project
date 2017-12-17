@@ -23,7 +23,6 @@ public class PhysicalStore extends Store {
 
 	@Override
 	public boolean addProduct(Product product, float Price) {
-		if (!(product instanceof PhysicalProduct)) return false;
 		products.add(new PhysicalStoreProduct(product, Price, this));
 		return true;
 	}

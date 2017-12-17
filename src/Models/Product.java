@@ -14,7 +14,7 @@ package Models;
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class Product implements Serializable{
+public abstract class Product implements Serializable{
 	public static int nextID = 0;
 	public String ID;
 	public String name;
