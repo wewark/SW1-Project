@@ -10,7 +10,10 @@
 //
 
 package Controllers;
-import Models.*;
+
+import Models.Store;
+import Models.StoreOwner;
+import Models.StoreProduct;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -40,10 +43,10 @@ public class StoreController {
 	}
 
 	//Console Version Functions
-		public StoreProduct chooseStoreProducts() {
+	public StoreProduct chooseStoreProducts() {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
-		if(store.products.size() > 0) {
+		if (store.products.size() > 0) {
 			for (StoreProduct product : store.products) {
 				System.out.println(product.detailsString());
 			}
@@ -52,8 +55,7 @@ public class StoreController {
 				System.out.print("Invalid Input");
 
 			return store.products.get(i - 1);
-		}
-		else return null;
+		} else return null;
 	}
 
 	//Print Views for Store Owners
@@ -61,8 +63,8 @@ public class StoreController {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
 		List<StoreProduct> sortedProducts = new ArrayList<>(store.products);
-		sortedProducts.sort(Comparator.comparingDouble(StoreProduct::getView).reversed());	//TODO Test Sorting
-		if(sortedProducts.size() > 0) {
+		sortedProducts.sort(Comparator.comparingDouble(StoreProduct::getView).reversed());    //TODO Test Sorting
+		if (sortedProducts.size() > 0) {
 			for (StoreProduct product : store.products) {
 				System.out.println(++i + ".\t" + product.view + " Views | " + product.detailsString());
 			}
@@ -70,8 +72,7 @@ public class StoreController {
 			while ((i = sc.nextInt()) < 1 || i > store.products.size())
 				System.out.print("Invalid Input");
 			return store.products.get(i - 1);
-		}
-		else return null;
+		} else return null;
 	}
 
 }

@@ -18,16 +18,19 @@ import Models.PromotionCard;
 
 public class PromotionController {
 	public Models.PromotionCard promo;
-	public void viewPromo() {	}
-	public static boolean CreatePromotionCard(PromotionCard promotionCard, int NumberOfSerials) {
-		if(promotionCard.offPercentage > 100) return false;
-		if(promotionCard.offPercentage  < 0  )return false;
-		if(promotionCard.offMax < 0) return false;
-		//Generate Serials
-		promotionCard.generateSerials(NumberOfSerials);
-		//Save to DB
-		PromotionCard.addPromoCard(promotionCard);
-		return true;
-	}
+
+    public void viewPromo() {
+    }
+
+    public static boolean CreatePromotionCard(PromotionCard promotionCard, int NumberOfSerials) {
+        if (promotionCard.offPercentage > 100) return false;
+        if (promotionCard.offPercentage < 0) return false;
+        if (promotionCard.offMax < 0) return false;
+        //Generate Serials
+        promotionCard.generateSerials(NumberOfSerials);
+        //Save to DB
+        PromotionCard.addPromoCard(promotionCard);
+        return true;
+    }
 
 }

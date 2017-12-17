@@ -13,48 +13,45 @@
 package Models;
 
 
-import Controllers.StoreController;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class StoreOwner extends User {
-	private ArrayList<Store> stores = new ArrayList<>();
+    private ArrayList<Store> stores = new ArrayList<>();
 
 	public boolean hasStore() {
-		return stores.isEmpty();
-	}
+        return stores.isEmpty();
+    }
 
 	public StoreOwner(HashMap<String, String> userData) {
 		super(userData);
 	}
 
-	public void addStore(Store store) {
-		stores.add(store);
-	}
+    public void addStore(Store store) {
+        stores.add(store);
+    }
 
-	//Console Function
-	public Store chooseStores() {
-		Scanner sc = new Scanner(System.in);
-		int i = 0;
-		if(stores.size() > 0) {
-			for (Store store : stores) {
-				System.out.println(++i + ". " + store.name);
-			}
-			System.out.print("Choose Store: ");
-			while ((i = sc.nextInt()) < 1 || i > stores.size()) //Input-Validation
-				System.out.print("Invalid Input");
+    //Console Function
+    public Store chooseStores() {
+        Scanner sc = new Scanner(System.in);
+        int i = 0;
+        if (stores.size() > 0) {
+            for (Store store : stores) {
+                System.out.println(++i + ". " + store.name);
+            }
+            System.out.print("Choose Store: ");
+            while ((i = sc.nextInt()) < 1 || i > stores.size()) //Input-Validation
+                System.out.print("Invalid Input");
 
-			return stores.get(i - 1);
-		}
-		else return null;
-	}
+            return stores.get(i - 1);
+        } else return null;
+    }
 
-	public Store getStore(String name) {
-		for (Store store : stores)
-			if (store.name.equals(name))
-				return store;
-		return null;
-	}
+    public Store getStore(String name) {
+        for (Store store : stores)
+            if (store.name.equals(name))
+                return store;
+        return null;
+    }
 }

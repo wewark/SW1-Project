@@ -1,10 +1,8 @@
 package Models;
 
 
-import javax.print.DocFlavor;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Platform {
 	public static ArrayList<User> Users = new ArrayList<>();
@@ -12,8 +10,9 @@ public class Platform {
 	public static ArrayList<Product> SuggestedProducts = new ArrayList<>();
 	public static ArrayList<Store> AppliedStores = new ArrayList<>();
 	public static ArrayList<PromotionCard> PromoCards = new ArrayList<>();
-    public static ArrayList<Store> Stores = new ArrayList<>();
-    public static void Initialize() {
+	public static ArrayList<Store> Stores = new ArrayList<>();
+
+	public static void Initialize() {
 		//Output File Names
 		String outputPath = "Database.db";
 
@@ -23,9 +22,10 @@ public class Platform {
 			ObjectInput input = new ObjectInputStream(buffer);
 			Users = (ArrayList<User>) input.readObject();
 			Products = (ArrayList<Product>) input.readObject();
-			AppliedProducts = (ArrayList<Product>) input.readObject();
+			SuggestedProducts = (ArrayList<Product>) input.readObject();
 			AppliedStores = (ArrayList<Store>) input.readObject();
 			PromoCards = (ArrayList<PromotionCard>) input.readObject();
+			Stores = (ArrayList<Store>) input.readObject();
 			input.close();
 
 		}
@@ -36,7 +36,7 @@ public class Platform {
 			//Reset Values incase any corrupt read
 			Users = new ArrayList<>();
 			Products = new ArrayList<>();
-			AppliedProducts = new ArrayList<>();
+			SuggestedProducts = new ArrayList<>();
 			AppliedStores = new ArrayList<>();
 			PromoCards = new ArrayList<>();
 			System.out.println("DB Corrupted, Starting fresh...");
@@ -54,9 +54,10 @@ public class Platform {
 		//Write
 		objectOutputStream.writeObject(Users);
 		objectOutputStream.writeObject(Products);
-		objectOutputStream.writeObject(AppliedProducts);
+		objectOutputStream.writeObject(SuggestedProducts);
 		objectOutputStream.writeObject(AppliedStores);
 		objectOutputStream.writeObject(PromoCards);
+		objectOutputStream.writeObject(Stores);
 		objectOutputStream.close();
     }
 

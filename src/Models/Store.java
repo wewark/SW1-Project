@@ -12,13 +12,12 @@
 
 package Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import java.io.Serializable;
-
 public abstract class Store implements Serializable{
-	public String ID;
+	public int ID;
 	public String name;
 	public StoreOwner storeOwner;
 	public ArrayList<StoreProduct> products = new ArrayList<>();
@@ -56,7 +55,7 @@ public abstract class Store implements Serializable{
 	public static Store chooseStores() {
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
-		if(Platform.Stores.size() > 0) {
+		if (Platform.Stores.size() > 0) {
 			for (Store store : Platform.Stores) {
 				System.out.println(++i + ". " + store.name);
 			}
@@ -65,7 +64,6 @@ public abstract class Store implements Serializable{
 				System.out.print("Invalid Input");
 
 			return Platform.Stores.get(i - 1);
-		}
-		else return null;
+		} else return null;
 	}
 }
