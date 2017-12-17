@@ -367,7 +367,15 @@ public class Main {
 
     public static void checkout() {
         ShoppingCart shoppingCart = Session.User.shoppingCart;
+        if(shoppingCart.orders.size() == 0)
+        {
+            println("No Orders, Please Add Products to Shopping Cart.");
+            return;
+        }
+        //Print Orders
         shoppingCart.printOrders();
+
+        //Print Sum
         println("Total: " + shoppingCart.calculateSum());
 
         println("Enter Promotion ? ");

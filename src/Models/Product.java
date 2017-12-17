@@ -81,11 +81,11 @@ public class Product implements Serializable{
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter New Product Data: ");
         System.out.print("Name: ");
-        name = sc.next();
+        name = sc.nextLine();
         System.out.print("Brand: ");
-        brand = sc.next();
+        brand = sc.nextLine();
         System.out.print("Company: ");
-        company = sc.next();
+        company = sc.nextLine();
         System.out.print("Avg. Price: ");
         price = sc.nextFloat();
     }
