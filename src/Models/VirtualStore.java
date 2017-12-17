@@ -21,7 +21,7 @@ public class VirtualStore extends Store {
 	@Override
 	public boolean addProduct(Product product, float Price) {
 		if (!(product instanceof VirtualProduct)) return false;
-		products.add(new VirtualStoreProduct(Price, (VirtualProduct) product));
+		products.add(new VirtualStoreProduct(Price, (VirtualProduct) product, this));
 		return true;
 	}
 }

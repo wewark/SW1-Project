@@ -1,7 +1,4 @@
-import Controllers.ProductController;
-import Controllers.ShoppingCartController;
-import Controllers.StoreController;
-import Controllers.UserController;
+import Controllers.*;
 import Models.*;
 
 import java.util.HashMap;
@@ -15,7 +12,7 @@ public class Main {
         while (true) {
             println("1. Login\n" +
                     "2. Signup\n" +
-                    "3. Exit"
+                    "0. Exit"
             );
             userChoice = sc.nextInt();
             if (userChoice == 1) {
@@ -23,7 +20,7 @@ public class Main {
                     loggedInMain();
             } else if (userChoice == 2)
                 signUp();
-            else if (userChoice == 3)
+            else if (userChoice == 0)
                 break;
             else
                 println("Invalid Option");
@@ -91,23 +88,47 @@ public class Main {
     }
 
     private static void UserMain() {
-        println("-------User Dashboard-------");
-        //User Functions go here
+        while(true) {
+            println("-------User Dashboard-------");
+            //User Functions go here
+            print("\t1. Browse Store Products\n" +
+                    "\t2. Suggest Product\n" +
+                    "\t3. Checkout\n" +
+                    "\t0. Back\n");
+
+            int userChoice = sc.nextInt();
+            sc.nextLine();
+            if (userChoice == 1)
+                browseStoresProducts();
+            else if (userChoice == 2)
+                suggestProduct();
+            else if (userChoice == 3)
+                checkout();
+            else return;
+        }
     }
 
     private static void StoreOwnerMain() {
     	while (true) {
 		    println("-------Store-Owner Dashboard-------");
 		    //StoreOwner Functions go here
-		    print("1. Add store\n" +
-				    "2. Add product to a store\n" +
-				    "3. Back\n");
+		    print(  "\t1. Add store\n" +
+                    "\t2. Browse Store's Products with Views\n" +
+                    "\t3. Suggest Product\n" +
+                    "\t4. Create Promotion To Store\n" +
+                    "\t5. Add Product To Store\n" +
+                    "\t0. Back\n");
 
-		    int userChoice = sc.nextInt();
-		    sc.nextLine();
+		    int userChoice = sc.nextInt(); sc.nextLine();
 		    if (userChoice == 1)
 			    storeOwnerAddStore();
-		    else if (userChoice == 2)
+		    else if(userChoice == 2)
+		        browseStoresProductsWithViews();
+		    else if(userChoice == 3)
+		        suggestProduct();
+		    else if(userChoice == 4)
+		        storeAddPromo();
+		    else if (userChoice == 5)
 		    	storeOwnerAddProductToStore();
 		    else return;
 	    }
@@ -117,12 +138,18 @@ public class Main {
     	while (true) {
 		    println("-------Admin Dashboard-------");
 		    //Admin Functions goes here
-		    print("\t1. Add product\n"
-                + "\t2. Back\n");
+		    print(  "\t1. Add Product\n" +
+                    "\t2. Add Suggested Product\n" +
+                    "\t3. Add Global Promotion\n" +
+                    "\t0. Back\n");
 
 		    int userChoice = sc.nextInt(); sc.nextLine();
 		    if (userChoice == 1)
 		    	adminAddProduct();
+		    else if(userChoice == 2)
+                browseSuggestedProducts();
+		    else if(userChoice == 3)
+                adminAddPromo();
 		    else return;
 	    }
     }
@@ -130,6 +157,7 @@ public class Main {
     public static void println(String string) {
         System.out.println(string);
     }
+
     public static void print(String string) {
         System.out.print(string);
     }
@@ -139,7 +167,7 @@ public class Main {
      */
     public static void browseStoresProducts()
     {
-        StoreController storeController = new StoreController(StoreController.chooseStores());
+        StoreController storeController = new StoreController(Store.chooseStores());
         if(storeController.store == null)
             System.out.println("No Stores Available.");
         else
@@ -167,7 +195,7 @@ public class Main {
      */
     public static void browseStoresProductsWithViews()
     {
-        StoreController storeController = new StoreController(StoreController.chooseStores());
+        StoreController storeController = new StoreController(Store.chooseStores());
         if(storeController.store == null)
             System.out.println("No Stores Available.");
         else
@@ -238,22 +266,51 @@ public class Main {
 	 * Admin Functions
 	 */
 	static void adminAddProduct() {
-		Product product;
-		println("\t1. Virtual Product\n" +
-				"\t2. Physical Product");
-		int userChoice = sc.nextInt(); sc.nextLine();
-		if (userChoice == 1)
-			product = new VirtualProduct();
-		else
-			product = new PhysicalProduct();
+        Product product;
+        println("\t1. Virtual Product\n" +
+                "\t2. Physical Product");
+        int userChoice = sc.nextInt(); sc.nextLine();
+        if (userChoice == 1)
+            product = new VirtualProduct();
+        else
+            product = new PhysicalProduct();
 
 
-		// TODO: input product info
-		ProductController.addProduct(product);
-		// printing already done inside addProduct
-	}
+        // TODO: input product info
+        ProductController.addProduct(product);
+        // printing already done inside addProduct
+    }
 
-    //Admin Functions
+    static void adminAddPromo() {
+        double offPercentage,  offMax;
+        int numberOfSerials;
+        System.out.println("Enter New Promotion Data: ");
+        System.out.print("off-Percentage: ");		offPercentage = sc.nextDouble();
+        System.out.print("Max-Discount: ");	        offMax = sc.nextDouble();
+        System.out.print("Number Of Serials: ");    numberOfSerials = sc.nextInt();
+        PromotionCard promotionCard = new GlobalPromotion(offPercentage, offMax);
+        if(PromotionController.CreatePromotionCard(promotionCard, numberOfSerials))
+            promotionCard.printSerials();
+        else
+            System.out.println("Creation Failed!");
+    }
+
+    static void storeAddPromo() {
+        double offPercentage,  offMax;
+        int numberOfSerials;
+        Store store = ((StoreOwner)Session.User).chooseStores();
+        System.out.println("Enter New Promotion Data: ");
+        System.out.print("off-Percentage: ");		offPercentage = sc.nextDouble();
+        System.out.print("Max-Discount: ");	        offMax = sc.nextDouble();
+        System.out.print("Number Of Serials: ");    numberOfSerials = sc.nextInt();
+        PromotionCard promotionCard = new StorePromotion(offPercentage, offMax, store);
+        if(PromotionController.CreatePromotionCard(promotionCard, numberOfSerials))
+            promotionCard.printSerials();
+        else
+            System.out.println("Creation Failed!");
+    }
+
+
     public static void browseSuggestedProducts()
     {
         Product suggestedProduct = ProductController.ChooseSuggestedProduct();
@@ -269,7 +326,7 @@ public class Main {
             if(choice == 1) {
                 ProductController.addProduct(suggestedProduct);
                 ProductController.deleteSuggestedProduct(suggestedProduct);
-                println("Added to Shopping Cart!");
+                println("Added to Products!");
             }
         }
     }
@@ -292,5 +349,52 @@ public class Main {
         if (ProductController.addSuggestedProduct(product))
             println("Added to Suggested, Admins will review suggestions soon!");
 
+    }
+
+    public static void checkout(){
+        ShoppingCart shoppingCart = Session.User.shoppingCart;
+        shoppingCart.printOrders();
+        println("Total: " + shoppingCart.calculateSum());
+
+        println("Enter Promotion ? ");
+        println("\t1. Yes\n" +
+                "\t0. No");
+
+        int userChoice = sc.nextInt();
+        if (userChoice == 1) {
+            addPromotion(shoppingCart);
+        }
+
+        println("Enter Pay Method : ");
+        println("\t1. Cash\n" +
+                "\t2. Credit");
+        userChoice = sc.nextInt();
+        if (userChoice == 1) {
+            println("Cash Payment Accepted, You will be charged upon orders delivery.");
+        }
+        else if (userChoice == 2) {
+            println("Credit Payment Accepted, You will be charged in the next 15 minutes.");
+        }
+
+        new ShoppingCartController(shoppingCart).clearCart();
+    }
+
+    public static void addPromotion(ShoppingCart shoppingCart)
+    {
+        print("Enter Serial : ");
+        String Serial = sc.next();
+        PromotionCard promotionCard = PromotionCard.getPromoBySerial(Serial);
+        if(promotionCard != null)
+        {
+            if(promotionCard.usePromo(Serial))
+            {
+                println("Total:\t" + shoppingCart.calculateSum());
+                println("After Discount:\t" + shoppingCart.calculateSumPromotion(promotionCard));
+            }
+            else
+                println("SerialNumber Already Used!");
+
+        }
+        else println("SerialNumber Not Found!");
     }
 }
