@@ -287,8 +287,8 @@ public class Main {
         else
             product = new PhysicalProduct();
 
+        product.takeInput();
 
-        // TODO: input product info
         ProductController.addProduct(product);
         // printing already done inside addProduct
     }
