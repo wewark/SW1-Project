@@ -9,9 +9,10 @@ import java.util.List;
 public class Platform {
 	public static ArrayList<User> Users = new ArrayList<>();
 	public static ArrayList<Product> Products = new ArrayList<>();
-	public static ArrayList<Product> AppliedProducts = new ArrayList<>();
+	public static ArrayList<Product> SuggestedProducts = new ArrayList<>();
 	public static ArrayList<Store> AppliedStores = new ArrayList<>();
 	public static ArrayList<PromotionCard> PromoCards = new ArrayList<>();
+    public static ArrayList<Store> Stores = new ArrayList<>();
     public static void Initialize() {
 		//Output File Names
 		String outputPath = "Database.db";

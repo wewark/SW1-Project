@@ -5,10 +5,9 @@
 //  @ Project : Untitled
 //  @ File Name : StoreProduct.java
 //  @ Date : 14/12/2017
-//  @ Author : 
+//  @ Author :
 //
 //
-
 
 
 package Models;
@@ -16,10 +15,32 @@ package Models;
 
 import java.io.Serializable;
 
-public class StoreProduct implements Serializable {
+public abstract class StoreProduct implements Serializable {
 	public double price;
-
-	public StoreProduct(float price) {
+	public Product product;
+	public int view = 0;
+    public Store store;
+	public StoreProduct(Product product, float price, Store store) {
+		this.product = product;
 		this.price = price;
+		this.store = store;
+	}
+	public  String detailsString(){
+		return "Name: " + product.name +  "\t Price: " + price;
+	}
+
+	public String viewDetails() {
+		product.view++;
+		view++;
+		return "Name: " + product.name + "\t Brand:  " + product.brand +  "\t Company: " + product.company +  "\t Price: " + price;
+	}
+
+	//Console Function
+	public void viewAndPrintDetails() {
+		System.out.println(viewDetails());
+	}
+
+	public int getView() {    //for comparator
+		return view;
 	}
 }

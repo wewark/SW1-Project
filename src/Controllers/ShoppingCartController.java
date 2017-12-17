@@ -14,8 +14,31 @@
 package Controllers;
 
 
+import Models.ShoppingCart;
+import Models.StoreProduct;
+
+import java.util.ArrayList;
+
 public class ShoppingCartController {
 	public Models.ShoppingCart shoppingCart;
+
+	public ShoppingCartController(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
+	public boolean addToCart(StoreProduct Product, int Quantity)
+	{
+		//It Is kinda straight forward here as there is no business logic or validation
+		return shoppingCart.addOrder(Product, Quantity);
+	}
+
+	public boolean clearCart()
+	{
+		//It Is kinda straight forward here as there is no business logic or validation
+		shoppingCart.orders = new ArrayList<>();
+		return true;
+	}
+
 //	public boolean creditCheckout() {
 //
 //	}
