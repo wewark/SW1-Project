@@ -29,17 +29,14 @@ public class Platform {
 			input.close();
 
 		}
-		catch (IOException e){
-			System.out.println("DB not found or Corrupted, Starting fresh...");
-		}
-		catch (ClassNotFoundException e){
+		catch (ClassNotFoundException  | IOException e){
 			//Reset Values incase any corrupt read
+			System.out.println("DB not found or Corrupted, Starting fresh...");
 			Users = new ArrayList<>();
 			Products = new ArrayList<>();
 			SuggestedProducts = new ArrayList<>();
 			AppliedStores = new ArrayList<>();
 			PromoCards = new ArrayList<>();
-			System.out.println("DB Corrupted, Starting fresh...");
 		}
 		return;
     }
