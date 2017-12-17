@@ -35,9 +35,8 @@ public class UserController {
 		return false;
 	}
 
-	public static boolean logout()	{
+	public static void logout()	{
 		Session.User = null;
-		return true;
 	}
 
 	//	public void setProfilePicture(Image image) {

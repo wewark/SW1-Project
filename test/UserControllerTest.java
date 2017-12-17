@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Session;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -16,6 +17,10 @@ public class UserControllerTest {
 		userData.put("username", "wewarkUser");
 		userData.put("passwordHash", "khaled");
 		assertEquals(UserController.register(userData), true);
+		assertEquals(UserController.login(userData.get("username"), userData.get("passwordHash")), true);
+		assertEquals(Session.IsLoggedIn(), true);
+		UserController.logout();
+		assertEquals(Session.IsLoggedIn(), false);
 	}
 
 	@Test
@@ -26,6 +31,10 @@ public class UserControllerTest {
 		userData.put("username", "wewarkStoreOwner");
 		userData.put("passwordHash", "khaled");
 		assertEquals(UserController.register(userData), true);
+		assertEquals(UserController.login(userData.get("username"), userData.get("passwordHash")), true);
+		assertEquals(Session.IsLoggedIn(), true);
+		UserController.logout();
+		assertEquals(Session.IsLoggedIn(), false);
 	}
 
 	@Test
@@ -36,13 +45,9 @@ public class UserControllerTest {
 		userData.put("username", "wewarkAdmin");
 		userData.put("passwordHash", "khaled");
 		assertEquals(UserController.register(userData), true);
-	}
-
-	@Test
-	public void testLogin() throws Exception {
-	}
-
-	@Test
-	public void testLogout() throws Exception {
+		assertEquals(UserController.login(userData.get("username"), userData.get("passwordHash")), true);
+		assertEquals(Session.IsLoggedIn(), true);
+		UserController.logout();
+		assertEquals(Session.IsLoggedIn(), false);
 	}
 }
