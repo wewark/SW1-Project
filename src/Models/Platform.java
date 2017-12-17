@@ -30,7 +30,7 @@ public class Platform {
 
 		}
 		catch (IOException e){
-			System.out.println("DB not found, Starting fresh...");
+			System.out.println("DB not found or Corrupted, Starting fresh...");
 		}
 		catch (ClassNotFoundException e){
 			//Reset Values incase any corrupt read
