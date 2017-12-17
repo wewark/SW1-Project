@@ -14,9 +14,6 @@
 package Models;
 
 
-import java.util.Objects;
-import java.util.UUID;
-
 public class GlobalPromotion extends PromotionCard {
 
     public GlobalPromotion(double offPercentage, double offMax) {

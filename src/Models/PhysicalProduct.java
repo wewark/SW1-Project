@@ -10,7 +10,6 @@
 //
 
 
-
 package Models;
 
 
@@ -32,6 +31,7 @@ public class PhysicalProduct extends Product {
     public void takeInput() {
 		super.takeInput();
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Weight: ");	price = sc.nextDouble();
-    }
+		System.out.print("Weight: ");
+		price = sc.nextDouble();
+	}
 }

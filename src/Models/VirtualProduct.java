@@ -19,14 +19,15 @@ public class VirtualProduct extends Product {
 		this.serial = serial;
 	}
 
-	public VirtualProduct() {
-		super();
-	}
+    public VirtualProduct() {
+        super();
+    }
 
     @Override
     public void takeInput() {
-		super.takeInput();
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Serial: ");	serial = sc.next();		//TODO: Should have a list of Serials(we're using single for prototyping only)
+        super.takeInput();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Serial: ");
+        serial = sc.next();        //TODO: Should have a list of Serials(we're using single for prototyping only)
     }
 }

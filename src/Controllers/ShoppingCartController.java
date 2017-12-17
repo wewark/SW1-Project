@@ -26,14 +26,12 @@ public class ShoppingCartController {
 		this.shoppingCart = shoppingCart;
 	}
 
-	public boolean addToCart(StoreProduct Product, int Quantity)
-	{
+	public boolean addToCart(StoreProduct Product, int Quantity) {
 		//It Is kinda straight forward here as there is no business logic or validation
 		return shoppingCart.addOrder(Product, Quantity);
 	}
 
-	public boolean clearCart()
-	{
+	public boolean clearCart() {
 		//It Is kinda straight forward here as there is no business logic or validation
 		shoppingCart.orders = new ArrayList<>();
 		return true;

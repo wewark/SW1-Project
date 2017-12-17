@@ -1,8 +1,5 @@
 package Models;
 
-import java.util.Objects;
-import java.util.UUID;
-
 public class StorePromotion extends PromotionCard {
 	public Store store;
 
